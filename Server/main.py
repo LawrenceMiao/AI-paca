@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 class Animal(BaseModel):
     coordinate_x: float
     coordinate_y: float
-    image_taken: UploadFile
     animal_label_human: str
 
 
@@ -100,7 +99,7 @@ async def get_animal(animal: str, request: Request):
 
 # POST endpoint to add a new animal
 @app.post("/add_animal")
-async def add_animal(animal: Animal):
+async def add_animal(animal: Animal, image_taken: UploadFile = File(...)):
     json_to_submit = {}
     print(animal)
 
