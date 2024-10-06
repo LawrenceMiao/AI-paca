@@ -1,3 +1,5 @@
 fastapi
 uvicorn
 python-decouple
+supabase
+python-multipart

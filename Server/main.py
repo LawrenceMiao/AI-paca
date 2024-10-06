@@ -136,3 +136,9 @@ async def predict(file: UploadFile = File(...)):
 
     # Return the prediction as a JSON response
     return JSONResponse({"prediction": predicted_class})
+
+
+@app.post("/predict_mock")
+async def predict_mock(file: UploadFile = File(...)):
+    """Stand in for predict"""
+    return JSONResponse({"prediction": "mock animal"})
