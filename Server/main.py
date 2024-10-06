@@ -48,7 +48,7 @@ async def get_animal(animal: str, request: Request):
 
 # return specific locations
 
-# (potential) return specific coordinates
+# (potential) return specific coordinates .
 
 
 # base API endpoint to get all the animals in the table
