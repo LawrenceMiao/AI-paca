@@ -17,7 +17,7 @@ function Filters({
   return (
     <div className="flex flex-wrap items-center gap-4 mb-4 z-10">
       <div className="flex flex-col">
-        <label className="font-semibold mb-1">Animal:</label>
+        <label className="font-bold mb-1">Animal:</label>
         <select
           value={selectedAnimal}
           onChange={e => onAnimalChange(e.target.value)}
@@ -31,7 +31,7 @@ function Filters({
         </select>
       </div>
       <div className="flex flex-col">
-        <label className="font-semibold mb-1">City:</label>
+        <label className="font-bold mb-1">City:</label>
         <select
           value={selectedCity}
           onChange={e => onCityChange(e.target.value)}
@@ -45,7 +45,7 @@ function Filters({
         </select>
       </div>
       <div className="flex flex-col ">
-        <label className="font-semibold mb-1">Start Date:</label>
+        <label className="font-bold mb-1">Start Date:</label>
         <DatePicker
           portalId="root"
           selected={startDate}
@@ -59,7 +59,7 @@ function Filters({
         />
       </div>
       <div className="flex flex-col">
-        <label className="font-semibold mb-1">End Date:</label>
+        <label className="font-bold mb-1">End Date:</label>
         <DatePicker
           selected={endDate}
           onChange={onEndDateChange}
