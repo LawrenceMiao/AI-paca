@@ -1,7 +1,9 @@
 import Layout from "./layouts/layout";
 import Home from "./pages/Home";
+import About from "./pages/About"
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Visualization from "./pages/Visualization";
 
 function App() {
   return (
@@ -9,11 +11,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/search" element={<Search />} />
-          <Route path="/heatmap" element={<HeatMap />} />
           <Route path="/about" element={<About />} />
-          <Route path="/learnmore" element={<LearnMore />} />
-          <Route path="/apidocs" element={<APIDocs />} /> */}
+          <Route path="/viz" element={<Visualization />} />
         </Routes>
       </Layout>
     </div>

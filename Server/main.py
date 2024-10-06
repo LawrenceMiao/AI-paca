@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 from supabase import Client, create_client
 import io
 import httpx
+from datetime import datetime
 import torch
 from fastapi import FastAPI, File, UploadFile, Request, HTTPException
 from fastapi.responses import JSONResponse
@@ -17,9 +18,7 @@ class Animal(BaseModel):
     coordinate_x: float
     coordinate_y: float
     image_taken: str
-    city: str
-    state: str
-    animal_name: str
+    animal_label_human: str
 
 
 app = FastAPI()
@@ -94,12 +93,74 @@ async def get_animal(animal: str, request: Request):
 # POST endpoint to add a new animal
 @app.post("/add_animal")
 async def add_animal(animal: Animal):
+    json_to_submit = {}
     # Access the body data directly from the animal parameter
     print(animal)
     animal_data = animal.dict()  # Convert Pydantic model to dict
 
+    # get id
+    animals = supabase.table("animals").select("*").execute()
+
+    # Check if the data is empty
+    if not animals.data:
+        return {"message": "No Animals exist in the database."}
+
+    sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+
+    for animal in sorted_animals:
+        print(animal["id"])
+    # Return the ID of the last animal
+    last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
+
+    id = last_animal_id + 1
+
+    json_to_submit[id] = last_animal_id + 1
+
+    # get timestamp of upload
+    created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
+    json_to_submit["created_at"] = created_at
+
+    # get predicted AI
+    async with httpx.AsyncClient() as client:
+        with open(animal_data["image_link"], "rb") as image_file:
+            files = {"file": image_file}
+            response = await client.post("/predict", files=files)
+
+            if response.status_code == 200:
+                response = response.json()
+                prediction = response["prediction"].lower()
+                if prediction != (animal_data["animal_label_human"].lower()):
+                    json_to_submit["animal_name"] = animal_data[
+                        "animal_label_human"
+                    ].lower()
+                else:
+                    json_to_submit["animal_name"] = prediction.lower()
+            else:
+                return {"error": response.text}
+
+    # fill the rest of the data from the animal_data
+    for i in range(len(animal_data.keys()) - 1):
+        cur_key = animal_data.keys()[i]
+        json_to_submit[cur_key] = animal_data[cur_key]
+
+    # get city and state
+    geo_url = f"http://localhost:8000/geocode/?lat={animal_data['coordinate_x']}&lon={animal_data['coordinate_y']}"
+
+    async with httpx.AsyncClient() as client:
+        geocode_response = await client.get(geo_url)
+
+        # Handle geocode response
+        if geocode_response.status_code != 200:
+            raise HTTPException(
+                status_code=geocode_response.status_code, detail="Geocode failed"
+            )
+
+        geocode_data = geocode_response.json()
+        json_to_submit["city"] = geocode_data["city"]
+        json_to_submit["state"] = geocode_data["state"]
+
     # Insert the data into the Supabase table
-    response = supabase.table("animals").insert(animal_data).execute()
+    response = supabase.table("animals").insert(json_to_submit).execute()
 
     # Check for errors
     if response.error:
@@ -108,7 +169,27 @@ async def add_animal(animal: Animal):
     return {"message": "Animal added successfully", "data": response.data}
 
 
-@app.get("/geocode/?lat={lat}&lon={lon}")
+# # POST endpoint to add a new animal
+# @app.get("/test_geo")
+# async def test_geo():
+# # get id
+#     animals = supabase.table("animals").select("*").execute()
+
+#     # Check if the data is empty
+#     if not animals.data:
+#         return {"message": "No Animals exist in the database."}
+
+#     sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+
+#     for animal in sorted_animals:
+#         print(animal["id"])
+#     # Return the ID of the last animal
+#     last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
+
+#     id = (last_animal_id + 1)
+
+
+@app.get("/geocode/")
 async def reverse_geocode(lat: float, lon: float):
     # Define the OpenCage API URL
     api_url = (
@@ -129,12 +210,16 @@ async def reverse_geocode(lat: float, lon: float):
     components = data["results"][0]["components"]
     city = components.get("city") or components.get("town") or components.get("village")
     state = components.get("state")
-    country = components.get("country")
+    # country = components.get('country')
 
     if not city or not state:
         raise HTTPException(status_code=404, detail="City or state not found")
 
-    return {"city": city, "state": state, "country": country}
+    return {
+        "city": city.lower(),
+        "state": state.lower(),
+        # "country": country
+    }
 
 
 MODEL_DESTINATION = "resnet18_pretrained.pth"
