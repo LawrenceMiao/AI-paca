@@ -1,0 +1,4 @@
+Classifier/dataset/
+Classifier/*.pth
+*.env
+__pycache__/
