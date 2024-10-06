@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Pressable, Alert, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Alert, Image } from 'react-native';
 import { useCameraPermission, useCameraDevice, Camera, PhotoFile } from 'react-native-vision-camera';
 import Geolocation from 'react-native-geolocation-service';
 
@@ -11,14 +11,20 @@ const CameraView = ({ navigation }) => {
 
     const camera = useRef<Camera>(null);
 
-    const screenHeight = Dimensions.get('window').height;
-
     useEffect(() => {
         const requestPermissions = async () => {
             const cameraGranted = await requestPermission();
             if (cameraGranted) {
-                const locationGranted = await Geolocation.requestAuthorization('whenInUse');
-                setLocationPermission(locationGranted === 'granted');
+                // Request location permission only after the camera permission is granted
+                Geolocation.requestAuthorization('whenInUse')
+                    .then((status) => {
+                        if (status === 'granted') {
+                            setLocationPermission(true);
+                        } else {
+                            setLocationPermission(false);
+                            Alert.alert('Location Permission Denied', 'Please enable location access to use this feature.');
+                        }
+                    });
             }
         };
         requestPermissions();
@@ -38,12 +44,11 @@ const CameraView = ({ navigation }) => {
                     (position) => {
                         const { latitude, longitude } = position.coords;
                         setPhoto({ file: photoTaken, location: { latitude, longitude } });
-                        Alert.alert('Picture taken', `Photo captured successfully at (${latitude}, ${longitude})!`);
+                        // Alert.alert('Picture taken', `Photo captured successfully at (${latitude}, ${longitude})!`);
 
-                        // Navigate to the PhotoPreview screen with the photo and location
                         navigation.navigate('PhotoPreview', {
                             photo: photoTaken,
-                            location: { latitude, longitude }
+                            location: { latitude, longitude },
                         });
                     },
                     (error) => {
@@ -67,19 +72,20 @@ const CameraView = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Camera
-                ref={camera}
-                style={styles.camera}
-                device={device}
-                isActive={true}
-                photo={true}
-            />
-
-            <Pressable 
-                onPress={onTakePicture}
-                style={styles.button}
-            >
-                <Text style={styles.buttonText}>Snap</Text>
+            <Image source={require('../src/alpaca.png')} style={styles.title} />
+            {/* <Text style={styles.title}>AI-paca</Text> */}
+            <View style={styles.cameraView}>
+                <Camera
+                    ref={camera}
+                    style={styles.camera}
+                    resizeMode="cover"
+                    device={device}
+                    isActive={true}
+                    photo={true}
+                />
+            </View>
+            <Pressable onPress={onTakePicture} style={styles.button}>
+                <View style={styles.innerButton} />
             </Pressable>
         </View>
     );
@@ -88,27 +94,50 @@ const CameraView = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'flex-start', // Adjust this for a better layout
+        alignItems: 'center',
+        paddingTop: 75,
+    },
+    title: {
+        // color: '#648f8d',
+        // fontSize: 40,
+        // fontWeight: 'bold',
+
+        width: 200,
+        height: 60,
+        marginBottom: 20,
+        // paddingBottom: 20,
+    },
+    cameraView: {
+        width: '90%',
+        height: '65%',
         justifyContent: 'center',
         alignItems: 'center',
     },
     camera: {
-        width: '90%',
-        height: '70%',
+        width: '100%',
+        height: '100%',
         borderRadius: 20,
         overflow: 'hidden',
+        borderWidth: 2,
+        borderColor: '#648f8d',
     },
     button: {
-        marginTop: 20, // Space between camera and button
-        width: 75,
-        height: 75,
-        backgroundColor: 'white',
-        borderRadius: 50,
+        marginTop: 30,
+        width: 90,
+        height: 90,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    buttonText: {
-        fontSize: 18,
-        fontWeight: 'bold',
+    innerButton: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'white',
+        borderRadius: 50,
+        borderWidth: 5,
+        borderColor: '#648f8d',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
