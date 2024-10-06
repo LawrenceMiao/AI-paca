@@ -19,13 +19,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
-# class Animal(BaseModel):
-#     coordinate_x: float
-#     coordinate_y: float
-#     animal_label_human: str
-
-
 app = FastAPI()
 
 url = config("SUPERBASE_URL")
@@ -107,84 +100,66 @@ async def add_animal(
 ):
     json_to_submit = {}
 
-    # # Upload the image to Supabase Storage
-    # image_data = await image_taken.read()  # Read the uploaded image
-    # image_path = f"images/{image_taken.filename}"  # Define the path for the image
+    # Upload the image to Supabase Storage
+    image_data = await image_taken.read()  # Read the uploaded image
+    image_path = f"images/{image_taken.filename}"  # Define the path for the image
 
-    # # Upload the image to Supabase Storage
-    # response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
+    # Upload the image to Supabase Storage
+    response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
 
-    # # Check if upload was successful
-    # if response.status_code != 200:
-    #     raise HTTPException(status_code=400, detail="Image upload failed.")
+    # Check if upload was successful
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Image upload failed.")
 
-    # # Get public URL for the uploaded image
-    # image_url = supabase.storage.from_(IMAGE_BUCKET).get_public_url(image_path)
+    # Get public URL for the uploaded image
+    image_url = supabase.storage.from_(IMAGE_BUCKET).get_public_url(image_path)
 
-    # # # get id
-    # # animals = supabase.table("animals").select("*").execute()
+    # get timestamp of upload
+    created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
+    json_to_submit["created_at"] = created_at
 
-    # # # Check if the data is empty
-    # # if not animals.data:
-    # #     return {"message": "No Animals exist in the database."}
+    image_bytes = await image_taken.read()
+    input_tensor = preprocess_image(image_bytes)
 
-    # # sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+    # Run the model and get prediction
+    with torch.no_grad():
+        output = model(input_tensor)
+        predicted_idx = output.argmax(dim=1).item()
 
-    # # # Return the ID of the last animal
-    # # last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
+    # Get the class name
+    # predicted_class = CLASS_NAMES[predicted_idx]
+    predicted_class = predicted_idx
 
-    # # json_to_submit[id] = last_animal_id + 1
+    # ASSIGN json_to_submit
+    json_to_submit["animal_name"] = predicted_class
+    json_to_submit["coordinate_x"] = coordinate_x
+    json_to_submit["coordinate_y"] = coordinate_y
+    json_to_submit["image_taken"] = image_url
 
-    # # get timestamp of upload
-    # created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
-    # json_to_submit["created_at"] = created_at
+    # get city and state
+    geo_url = f"http://localhost:8000/geocode/?lat={coordinate_x}&lon={coordinate_y}"
 
-    # image_bytes = await image_taken.read()
-    # input_tensor = preprocess_image(image_bytes)
+    async with httpx.AsyncClient() as client:
+        geocode_response = await client.get(geo_url)
 
-    # # Run the model and get prediction
-    # with torch.no_grad():
-    #     output = model(input_tensor)
-    #     predicted_idx = output.argmax(dim=1).item()
+        # Handle geocode response
+        if geocode_response.status_code != 200:
+            raise HTTPException(
+                status_code=geocode_response.status_code, detail="Geocode failed"
+            )
 
-    # # Get the class name
-    # # predicted_class = CLASS_NAMES[predicted_idx]
-    # predicted_class = predicted_idx
-    # # ASSIGN json_to_submit
-    # json_to_submit["animal_name"] = predicted_class
+        geocode_data = geocode_response.json()
+        json_to_submit["city"] = geocode_data["city"]
+        json_to_submit["state"] = geocode_data["state"]
 
-    # # fill the rest of the data from the animal_data
-    # # for i in range(len(animal.keys()) - 1):
-    # #     cur_key = animal.keys()[i]
-    # #     if cur_key == "image_taken":
-    # #         json_to_submit[cur_key] = image_url
-    # #     else:
-    # #         json_to_submit[cur_key] = animal[cur_key]
+    # Insert the data into the Supabase table
+    response = supabase.table("animals").insert(json_to_submit).execute()
 
-    # # get city and state
-    # geo_url = f"http://localhost:8000/geocode/?lat={coordinate_x}&lon={coordinate_y}"
+    # Check for errors
+    if response.error:
+        raise HTTPException(status_code=400, detail=response.error.message)
 
-    # async with httpx.AsyncClient() as client:
-    #     geocode_response = await client.get(geo_url)
-
-    #     # Handle geocode response
-    #     if geocode_response.status_code != 200:
-    #         raise HTTPException(
-    #             status_code=geocode_response.status_code, detail="Geocode failed"
-    #         )
-
-    #     geocode_data = geocode_response.json()
-    #     json_to_submit["city"] = geocode_data["city"]
-    #     json_to_submit["state"] = geocode_data["state"]
-
-    # # Insert the data into the Supabase table
-    # response = supabase.table("animals").insert(json_to_submit).execute()
-
-    # # Check for errors
-    # if response.error:
-    #     raise HTTPException(status_code=400, detail=response.error.message)
-
-    # return {"message": "Animal added successfully", "data": response.data}
+    return {"message": "Animal added successfully", "data": response.data}
 
 
 # # POST endpoint to add a new animal
