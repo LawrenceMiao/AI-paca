@@ -94,7 +94,7 @@ const Home = () => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 1 }}
 
-        className="flex flex-row items-center mx-20 my-38">
+        className="flex flex-row items-center mx-16 my-38">
         <p className="text-justify text-2xl text-gray-500 sm:text-md w-full leading-tight">
           In a world where every small action counts, making an impact on ecology can be as simple as snapping a photo.
           Download our app today to join a community of young change-makers dedicated to contributing to meaningful research.
