@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from supabase import Client, create_client
 import io
-
+import httpx
 import torch
 from fastapi import FastAPI, File, UploadFile, Request, HTTPException
 from fastapi.responses import JSONResponse
@@ -24,6 +24,7 @@ app = FastAPI()
 
 url = config("SUPERBASE_URL")
 key = config("SUPERBASE_KEY")
+geo_key = config("GEO_KEY")
 
 supabase: Client = create_client(url, key)
 
@@ -39,6 +40,15 @@ async def read_root():
     """Test server running"""
     return {"message": "FastAPI application"}
 
+# base API endpoint to get all the animals in the table
+@app.get("/all_data")
+async def get_data():
+    animals = supabase.table("animals").select("*").execute()
+
+    if not animals:
+        return {"message": "No Animals exist in the database."}
+
+    return animals.data
 
 # return specific animals
 @app.get("/all_data/animal={animal}")
@@ -120,8 +130,6 @@ async def get_animal(state: str, request: Request):
 
 # (potential) return specific coordinates .
 
-
-
 # change coordinates.
 # DO NOT USE UNLESS NEEDED
 # @app.get("/update_coordinates")
@@ -133,18 +141,6 @@ async def get_animal(state: str, request: Request):
 #     }).eq("city", city).execute()
 
 #     return {"message": "Coordinates updated successfully", "data": response.data}
-
-
-
-# base API endpoint to get all the animals in the table
-@app.get("/all_data")
-async def get_data():
-    animals = supabase.table("animals").select("*").execute()
-
-    if not animals:
-        return {"message": "No Animals exist in the database."}
-
-    return animals.data
 
 
 # POST endpoint to add a new animal
@@ -162,6 +158,36 @@ async def add_animal(animal: Animal):
 
     return {"message": "Animal added successfully", "data": response.data}
 
+
+@app.get("/geocode/?lat={lat}&lon={lon}")
+async def reverse_geocode(lat: float, lon: float):
+    # Define the OpenCage API URL
+    api_url = f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={geo_key}"
+
+    # Make the HTTP request
+    async with httpx.AsyncClient() as client:
+        response = await client.get(api_url)
+
+    # Parse the JSON response
+    data = response.json()
+
+    if data['total_results'] == 0:
+        raise HTTPException(status_code=404, detail="Location not found")
+
+    # Extract city, state, and country from the API response
+    components = data['results'][0]['components']
+    city = components.get('city') or components.get('town') or components.get('village')
+    state = components.get('state')
+    country = components.get('country')
+
+    if not city or not state:
+        raise HTTPException(status_code=404, detail="City or state not found")
+
+    return {
+        "city": city,
+        "state": state,
+        "country": country
+    }
 
 MODEL_DESTINATION = "resnet18_pretrained.pth"
 
