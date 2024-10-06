@@ -20,7 +20,6 @@ class Animal(BaseModel):
     state: str
     animal_name: str
 
-
 app = FastAPI()
 
 url = config("SUPERBASE_URL")
@@ -120,6 +119,21 @@ async def get_animal(state: str, request: Request):
 
 
 # (potential) return specific coordinates .
+
+
+
+# change coordinates.
+# DO NOT USE UNLESS NEEDED
+# @app.get("/update_coordinates")
+# async def update_coordinates(city: str = "dallas"):
+#     # Update the coordinates for a specific city
+#     response = supabase.table("animals").update({
+#         "coordinate_x": 32.779167,
+#         "coordinate_y": -96.808891
+#     }).eq("city", city).execute()
+
+#     return {"message": "Coordinates updated successfully", "data": response.data}
+
 
 
 # base API endpoint to get all the animals in the table
