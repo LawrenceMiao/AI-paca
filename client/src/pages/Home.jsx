@@ -19,7 +19,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mb-32">
 
       {/* Landing GIF Animation */}
       <motion.div
@@ -35,15 +35,13 @@ const Home = () => {
         <img ref={gifRef} src={aipaca} alt="A looping GIF" />
       </motion.div>
 
-
-      {/* Content Section with Scroll Animation */}
       <div
-        className="my-64 flex lg:flex-row sm:flex-col sm:gap-20 items-center justify-center md:justify-between mx-auto max-w-7xl py-12 px-4"
+        className="mt-40 flex lg:flex-row sm:flex-col sm:gap-20 items-center justify-center md:justify-between mx-auto max-w-7xl py-12 px-4"
       >
         <motion.div
           initial={{ x: -300, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ ease: "easeOut", duration: 1.5 }}
+          transition={{ ease: "easeOut", duration: 1 }}
           className="md:w-1/2 text-center md:text-left pr-2">
 
           <p className="font-bold uppercase my-2 pl-2 text-teal-600">Data for good</p>
@@ -75,17 +73,35 @@ const Home = () => {
           </div>
         </motion.div>
 
-        <div className="md:w-1/2 mt-10 drop-shadow-lg">
+        <div className="md:w-1/2 my-20 drop-shadow-lg">
           <motion.img
             className="object-cover object-center rounded-lg shadow-regular"
             src={heroImage}
             alt="Hero Image"
             initial={{ x: 500, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ ease: "easeOut", duration: 1.5 }}
+            transition={{ ease: "easeOut", duration: 1 }}
           />
         </div>
       </div>
+      <motion.div
+
+        src={heroImage}
+        alt="Hero Image"
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeOut", duration: 1 }}
+
+        className="flex flex-row items-center mx-20 my-38">
+        <p className="text-justify text-2xl text-gray-500 sm:text-md w-full leading-tight">
+          In a world where every small action counts, making an impact on ecology can be as simple as snapping a photo.
+          Download our app today to join a community of young change-makers dedicated to contributing to meaningful research.
+          Our mission is to empower adolescents to observe and documenttheir surroundings, turning everyday moments into
+          valuable data that can help protect our planet.
+          With just a few taps on the phone, you can play a vital role in the fight for a healthier environment and support ongoing research!
+        </p>
+      </motion.div>
+
     </div>
   );
 

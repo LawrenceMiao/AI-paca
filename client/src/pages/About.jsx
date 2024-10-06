@@ -22,7 +22,7 @@ const About = () => {
       <SectionAbout title="Vizualize Data" num="03" desc="As an ecologist or environmental enthusiast, you gain access to a wealth of global wildlife data, 
       supported by contributions from our community of users. Our AI technology classifies the photos for you, allowing you to focus on analyzing the data. 
       Additionally, you have the option to download the data for your own use." pic={pic3} />
-      <p className="text-xs float-right">All images made by storyset from stroyset.com</p>
+      <p className="text-xs float-right">All images made by storyset from www.stroyset.com</p>
     </>
   );
 };
