@@ -156,13 +156,16 @@ async def add_animal(animal: Animal):
     if not animals.data:
         return {"message": "No Animals exist in the database."}
 
-    # Get the last animal entry in the list
-    last_animal = animals.data[-1]  # Access the last element in the list
+    sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
 
+    for animal in sorted_animals:
+        print(animal["id"])
     # Return the ID of the last animal
-    last_animal_id = last_animal.get("id", "No ID available")  # Ensure 'id' exists
+    last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
 
-    json_to_submit[id] = last_animal_id
+    id = (last_animal_id + 1)
+
+    json_to_submit[id] = (last_animal_id + 1)
 
     # get timestamp of upload
     created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
@@ -181,7 +184,7 @@ async def add_animal(animal: Animal):
                 if prediction != (animal_data['animal_label_human'].lower()):
                     json_to_submit['animal_name'] = (animal_data['animal_label_human'].lower())
                 else:
-                    json_to_submit['animal_name'] = prediction
+                    json_to_submit['animal_name'] = prediction.lower()
             else:
                 return {"error": response.text}
 
@@ -212,6 +215,25 @@ async def add_animal(animal: Animal):
         raise HTTPException(status_code=400, detail=response.error.message)
 
     return {"message": "Animal added successfully", "data": response.data}
+
+# # POST endpoint to add a new animal
+# @app.get("/test_geo")
+# async def test_geo():
+# # get id
+#     animals = supabase.table("animals").select("*").execute()
+
+#     # Check if the data is empty
+#     if not animals.data:
+#         return {"message": "No Animals exist in the database."}
+
+#     sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+
+#     for animal in sorted_animals:
+#         print(animal["id"])
+#     # Return the ID of the last animal
+#     last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
+
+#     id = (last_animal_id + 1)
 
 
 @app.get("/geocode/")
