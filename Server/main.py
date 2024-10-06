@@ -95,9 +95,9 @@ async def get_animal(animal: str, request: Request):
 @app.post("/add_animal")
 async def add_animal(animal: Animal):
     # Access the body data directly from the animal parameter
+    print(animal)
     animal_data = animal.dict()  # Convert Pydantic model to dict
 
-    print(animal)
     # Insert the data into the Supabase table
     response = supabase.table("animals").insert(animal_data).execute()
 
