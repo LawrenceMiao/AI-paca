@@ -155,10 +155,6 @@ async def add_animal(
     # Insert the data into the Supabase table
     response = supabase.table("animals").insert(json_to_submit).execute()
 
-    # Check for errors
-    if response.error:
-        raise HTTPException(status_code=400, detail=response.error.message)
-
     return {"message": "Animal added successfully", "data": response.data}
 
 
