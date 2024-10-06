@@ -25,13 +25,27 @@ async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "title": "My FastAPI Website"})
 
 # return specific animals
+@app.get("/{animal}")
+async def get_animal(animal: str):
+    # Query the Supabase table for the specified animal
+    animal = supabase.table("animals").select("*").eq("name", animal).execute()
+
+    # Check for any errors in the query response
+    if animal.error:
+        return {"error": animal.error.message}
+    
+    if animal.details == None:
+        return {"N/A" : "Animal Does Not Exist In Database"}
+
+    # Return the matched data
+    return {"data": animal.data}
 
 # return specific locations
 
-# potential, 
+# (potential) return coordinates
 
 # Example API endpoint
-@app.get("/api/data")
+@app.get("/all_data")
 async def get_data():
     animals = supabase.table("animals").select("*").execute()
     return animals.data
