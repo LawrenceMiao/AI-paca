@@ -33,12 +33,12 @@ async def read_root():
 
 
 # return specific animals
-@app.get("/all_data/animal={animal}")
+@app.get("/all_data/{animal}")
 async def get_animal(animal: str, request: Request):
     # Check if the animal name is not lowercase
     if animal != animal.lower():
         # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/animal={animal.lower()}")
+        new_url = request.url.replace(path=f"/all_data/{animal.lower()}")
         return RedirectResponse(url=new_url)
 
     # Query the Supabase table for the specified animal
@@ -53,62 +53,6 @@ async def get_animal(animal: str, request: Request):
 
 
 # return specific locations
-@app.get("/all_data/city={city}&state={state}")
-async def get_animal(city: str, state: str, request: Request):
-    # Check if the city or state name is not lowercase
-    if city != city.lower() or state != state.lower():
-        # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/city={city.lower()}&state={state.lower()}")
-        return RedirectResponse(url=new_url)
-
-    # Query the Supabase table for the specified city and state
-    response = supabase.table("animals").select("*").eq("city", city).eq("state", state).execute()
-
-    # If the animal does not exist in the database
-    if not response.data:
-        return {"message": "No animals exist in the database for selected city and state."}
-
-    # Return the matched data
-    return {"data": response.data}
-
-
-@app.get("/all_data/city={city}")
-async def get_animal(city: str, request: Request):
-    # Check if the city or state name is not lowercase
-    if city != city.lower():
-        # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/city={city.lower()}")
-        return RedirectResponse(url=new_url)
-
-    # Query the Supabase table for the specified city and state
-    response = supabase.table("animals").select("*").eq("city", city).execute()
-
-    # If the animal does not exist in the database
-    if not response.data:
-        return {"message": "No animals exist in the database for selected city."}
-
-    # Return the matched data
-    return {"data": response.data}
-
-
-@app.get("/all_data/state={state}")
-async def get_animal(state: str, request: Request):
-    # Check if the city or state name is not lowercase
-    if state != state.lower():
-        # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/state={state.lower()}")
-        return RedirectResponse(url=new_url)
-
-    # Query the Supabase table for the specified city and state
-    response = supabase.table("animals").select("*").eq("state", state).execute()
-
-    # If the animal does not exist in the database
-    if not response.data:
-        return {"message": "No animals exist in the database for selected state."}
-
-    # Return the matched data
-    return {"data": response.data}
-
 
 # (potential) return specific coordinates .
 
@@ -192,9 +136,3 @@ async def predict(file: UploadFile = File(...)):
 
     # Return the prediction as a JSON response
     return JSONResponse({"prediction": predicted_class})
-
-
-@app.post("/predict_mock")
-async def predict_mock(file: UploadFile = File(...)):
-    """Stand in for predict"""
-    return JSONResponse({"prediction": "mock animal"})
