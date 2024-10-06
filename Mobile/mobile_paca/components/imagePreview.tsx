@@ -23,14 +23,14 @@ const PhotoPreview = ({ route, navigation }) => {
 
     const handleSubmit = async () => {
         const data = {
-            photoPath: photo.path,
-            location,
-            description: selectedDescription,
+            coordinate_x: location.latitude,      
+            coordinate_y: location.longitude,     
+            imag_uri: photo.path,
+            description: selectedDescription || '', 
         };
 
         try {
-
-            await fetch('YOUR_API_ENDPOINT', {
+            await fetch('/animal', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

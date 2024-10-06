@@ -1,35 +1,49 @@
-// CameraView.js
-
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Pressable, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Alert, Dimensions } from 'react-native';
 import { useCameraPermission, useCameraDevice, Camera, PhotoFile } from 'react-native-vision-camera';
 import Geolocation from 'react-native-geolocation-service';
 
 const CameraView = ({ navigation }) => {
     const device = useCameraDevice('back');
     const { hasPermission, requestPermission } = useCameraPermission();
+    const [locationPermission, setLocationPermission] = useState(false);
     const [photo, setPhoto] = useState<{ file: PhotoFile | null; location: { latitude: number; longitude: number } | null }>({ file: null, location: null });
 
     const camera = useRef<Camera>(null);
-    
+
+    const screenHeight = Dimensions.get('window').height;
+
     useEffect(() => {
-        if (!hasPermission) {
-            requestPermission();
-        }
-    }, [hasPermission]);
+        const requestPermissions = async () => {
+            const cameraGranted = await requestPermission();
+            if (cameraGranted) {
+                const locationGranted = await Geolocation.requestAuthorization('whenInUse');
+                setLocationPermission(locationGranted === 'granted');
+            }
+        };
+        requestPermissions();
+    }, []);
 
     const onTakePicture = async () => {
+        if (!locationPermission) {
+            Alert.alert('Location Permission Required', 'Please enable location access to take photos with location data.');
+            return;
+        }
+
         try {
             const photoTaken = await camera.current?.takePhoto();
-            console.log(photoTaken);
             if (photoTaken) {
+                // Get the current location
                 Geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        // Navigate to PhotoPreview with photo and location data
+                        setPhoto({ file: photoTaken, location: { latitude, longitude } });
+                        Alert.alert('Picture taken', `Photo captured successfully at (${latitude}, ${longitude})!`);
+
+                        // Navigate to the PhotoPreview screen with the photo and location
                         navigation.navigate('PhotoPreview', {
                             photo: photoTaken,
-                            location: { latitude, longitude },
+                            location: { latitude, longitude }
                         });
                     },
                     (error) => {
@@ -47,40 +61,55 @@ const CameraView = ({ navigation }) => {
         }
     };
 
-    console.log("has permissions:", hasPermission);
-
-    if (!device || !hasPermission) {
-        return <Text>Camera not available</Text>;
+    if (!device || !hasPermission || !locationPermission) {
+        return <Text>Camera not available or location permission not granted</Text>;
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <Camera 
+        <View style={styles.container}>
+            <Camera
                 ref={camera}
-                style={StyleSheet.absoluteFill}
-                device={device} 
+                style={styles.camera}
+                device={device}
                 isActive={true}
                 photo={true}
             />
 
             <Pressable 
                 onPress={onTakePicture}
-                style={{    
-                    position: 'absolute', 
-                    alignSelf: 'center', 
-                    bottom: 50, 
-                    width: 75, 
-                    height: 75, 
-                    backgroundColor: 'white',
-                    borderRadius: 50,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
+                style={styles.button}
             >
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Snap</Text>
+                <Text style={styles.buttonText}>Snap</Text>
             </Pressable>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    camera: {
+        width: '90%',
+        height: '70%',
+        borderRadius: 20,
+        overflow: 'hidden',
+    },
+    button: {
+        marginTop: 20, // Space between camera and button
+        width: 75,
+        height: 75,
+        backgroundColor: 'white',
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+});
 
 export default CameraView;
