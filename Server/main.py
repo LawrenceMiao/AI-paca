@@ -159,7 +159,7 @@ async def add_animal(animal: Animal):
     return {"message": "Animal added successfully", "data": response.data}
 
 
-@app.get("/geocode/?lat={lat}&lon={lon}")
+@app.get("/geocode/")
 async def reverse_geocode(lat: float, lon: float):
     # Define the OpenCage API URL
     api_url = f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={geo_key}"
@@ -178,15 +178,15 @@ async def reverse_geocode(lat: float, lon: float):
     components = data['results'][0]['components']
     city = components.get('city') or components.get('town') or components.get('village')
     state = components.get('state')
-    country = components.get('country')
+    # country = components.get('country')
 
     if not city or not state:
         raise HTTPException(status_code=404, detail="City or state not found")
 
     return {
-        "city": city,
-        "state": state,
-        "country": country
+        "city": city.lower(),
+        "state": state.lower(),
+        # "country": country
     }
 
 MODEL_DESTINATION = "resnet18_pretrained.pth"
