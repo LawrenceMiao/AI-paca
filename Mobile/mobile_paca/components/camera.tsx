@@ -1,9 +1,11 @@
+// CameraView.js
+
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Image, Alert } from 'react-native';
 import { useCameraPermission, useCameraDevice, Camera, PhotoFile } from 'react-native-vision-camera';
 import Geolocation from 'react-native-geolocation-service';
 
-const CameraView = () => {
+const CameraView = ({ navigation }) => {
     const device = useCameraDevice('back');
     const { hasPermission, requestPermission } = useCameraPermission();
     const [photo, setPhoto] = useState<{ file: PhotoFile | null; location: { latitude: number; longitude: number } | null }>({ file: null, location: null });
@@ -20,14 +22,15 @@ const CameraView = () => {
         try {
             const photoTaken = await camera.current?.takePhoto();
             console.log(photoTaken);
-            // Check if photoTaken is defined before setting the state
             if (photoTaken) {
-                // Get the current location
                 Geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        setPhoto({ file: photoTaken, location: { latitude, longitude } });
-                        Alert.alert('Picture taken', `Photo captured successfully at (${latitude}, ${longitude})!`);
+                        // Navigate to PhotoPreview with photo and location data
+                        navigation.navigate('PhotoPreview', {
+                            photo: photoTaken,
+                            location: { latitude, longitude },
+                        });
                     },
                     (error) => {
                         console.error('Failed to get location:', error);
@@ -76,16 +79,6 @@ const CameraView = () => {
             >
                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Snap</Text>
             </Pressable>
-
-            {photo.file && (
-                <View style={{ position: 'absolute', top: 50, left: 20 }}>
-                    <Image
-                        source={{ uri: photo.file.path }}
-                        style={{ width: 100, height: 100 }}
-                    />
-                    <Text>Location: {photo.location?.latitude.toFixed(4)}, {photo.location?.longitude.toFixed(4)}</Text>
-                </View>
-            )}
         </View>
     );
 };

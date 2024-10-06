@@ -1,35 +1,22 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// App.js
 
 import React from 'react';
-import type { PropsWithChildren } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CameraView from './components/camera';
+import PhotoPreview from './components/imagePreview';
 
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  ActivityIndicator,
-  Text,
-} from 'react-native';
+const Stack = createNativeStackNavigator();
 
-function App(): React.JSX.Element {
-  return (
-    <SafeAreaView style={styles.container}>
-      <CameraView />
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white', // Set your preferred background color
-  },
-});
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="CameraView">
+                <Stack.Screen name="CameraView" component={CameraView} />
+                <Stack.Screen name="PhotoPreview" component={PhotoPreview} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
 
 export default App;
