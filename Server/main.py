@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 from supabase import Client, create_client
 import io
 import httpx
+from datetime import datetime
 import torch
 from fastapi import FastAPI, File, UploadFile, Request, HTTPException
 from fastapi.responses import JSONResponse
@@ -16,9 +17,7 @@ class Animal(BaseModel):
     coordinate_x: float
     coordinate_y: float
     image_taken: str
-    city: str
-    state: str
-    animal_name: str
+    animal_label_human: str
 
 app = FastAPI()
 
@@ -146,11 +145,67 @@ async def get_animal(state: str, request: Request):
 # POST endpoint to add a new animal
 @app.post("/add_animal")
 async def add_animal(animal: Animal):
+    json_to_submit = {}
     # Access the body data directly from the animal parameter
     animal_data = animal.dict()  # Convert Pydantic model to dict
 
+    # get id
+    animals = supabase.table("animals").select("*").execute()
+
+    # Check if the data is empty
+    if not animals.data:
+        return {"message": "No Animals exist in the database."}
+
+    # Get the last animal entry in the list
+    last_animal = animals.data[-1]  # Access the last element in the list
+
+    # Return the ID of the last animal
+    last_animal_id = last_animal.get("id", "No ID available")  # Ensure 'id' exists
+
+    json_to_submit[id] = last_animal_id
+
+    # get timestamp of upload
+    created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
+    json_to_submit["created_at"] = created_at
+
+    
+    # get predicted AI
+    async with httpx.AsyncClient() as client:
+        with open(animal_data['image_link'], 'rb') as image_file:
+            files = {'file': image_file}
+            response = await client.post("/predict", files=files)
+
+            if response.status_code == 200:
+                response = response.json()
+                prediction = response["prediction"].lower()
+                if prediction != (animal_data['animal_label_human'].lower()):
+                    json_to_submit['animal_name'] = (animal_data['animal_label_human'].lower())
+                else:
+                    json_to_submit['animal_name'] = prediction
+            else:
+                return {"error": response.text}
+
+    # fill the rest of the data from the animal_data
+    for i in range(len(animal_data.keys()) - 1):
+        cur_key = animal_data.keys()[i]
+        json_to_submit[cur_key] = animal_data[cur_key]
+
+    # get city and state
+    geo_url = f"http://localhost:8000/geocode/?lat={animal_data['coordinate_x']}&lon={animal_data['coordinate_y']}"
+
+    async with httpx.AsyncClient() as client:
+        geocode_response = await client.get(geo_url)
+        
+        # Handle geocode response
+        if geocode_response.status_code != 200:
+            raise HTTPException(status_code=geocode_response.status_code, detail="Geocode failed")
+
+        geocode_data = geocode_response.json()
+        json_to_submit["city"] = geocode_data["city"]
+        json_to_submit["state"] = geocode_data["state"]
+
     # Insert the data into the Supabase table
-    response = supabase.table("animals").insert(animal_data).execute()
+    response = supabase.table("animals").insert(json_to_submit).execute()
 
     # Check for errors
     if response.error:
