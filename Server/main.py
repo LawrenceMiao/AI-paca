@@ -124,7 +124,7 @@ async def add_animal(animal: Animal):
 
     # get predicted AI
     async with httpx.AsyncClient() as client:
-        with open(animal_data["image_link"], "rb") as image_file:
+        with open(animal_data["image_taken"], "rb") as image_file:
             files = {"file": image_file}
             response = await client.post("/predict", files=files)
 
