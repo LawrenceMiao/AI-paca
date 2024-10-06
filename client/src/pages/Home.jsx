@@ -1,4 +1,4 @@
-import heroImage from "../assets/ss.png";
+import heroImage from "../assets/image.jpg";
 import { Link } from "react-router-dom";
 import aipaca from "../assets/aipaca.gif"
 import { useRef, useEffect } from "react";
