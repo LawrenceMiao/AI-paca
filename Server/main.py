@@ -98,6 +98,7 @@ async def add_animal(
     animal_label_human: str = Form(...),
     image_taken: UploadFile = File(...),
 ):
+    logger.info("breegin")
     json_to_submit = {}
 
     # Upload the image to Supabase Storage
