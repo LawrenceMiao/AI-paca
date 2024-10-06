@@ -1,7 +1,6 @@
 const Headerspace = () => {
-  // General layout for the components
   return (
-    <div className='bg-gradient-to-r from-slate-600 to-slate-800 w-full h-1 shadow-md'>&nbsp;</div>
+    <div className='bg-gradient-to-r from-blue-500 to-slate-800 w-full h-1  drop-shadow-lg'>&nbsp;</div>
   );
 };
 

@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 1,
+    "created_at": "2024-01-15T01:38:50.349787",
+    "city": "denver",
+    "coordinate_x": 39.562404,
+    "coordinate_y": -105.399641,
+    "image_taken": "https://example.com/image_1.jpg",
+    "state": "Colorado",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 2,
+    "created_at": "2023-12-22T04:39:59.349787",
+    "city": "boston",
+    "coordinate_x": 42.307718,
+    "coordinate_y": -70.782252,
+    "image_taken": "https://example.com/image_2.jpg",
+    "state": "Massachusetts",
+    "animal_name": "deer"
+  },
+  {
+    "id": 3,
+    "created_at": "2024-08-14T03:21:18.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.507863,
+    "coordinate_y": -84.028414,
+    "image_taken": "https://example.com/image_3.jpg",
+    "state": "Georgia",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 4,
+    "created_at": "2024-07-03T17:53:22.349787",
+    "city": "denver",
+    "coordinate_x": 39.867949,
+    "coordinate_y": -104.73117,
+    "image_taken": "https://example.com/image_4.jpg",
+    "state": "Colorado",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 5,
+    "created_at": "2024-08-02T09:57:00.349787",
+    "city": "los angeles",
+    "coordinate_x": 33.825655,
+    "coordinate_y": -117.904604,
+    "image_taken": "https://example.com/image_5.jpg",
+    "state": "California",
+    "animal_name": "fox"
+  },
+  {
+    "id": 6,
+    "created_at": "2024-01-22T16:23:07.349787",
+    "city": "chicago",
+    "coordinate_x": 41.598757,
+    "coordinate_y": -87.720161,
+    "image_taken": "https://example.com/image_6.jpg",
+    "state": "Illinois",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 7,
+    "created_at": "2024-09-06T11:54:50.349787",
+    "city": "miami",
+    "coordinate_x": 26.400197,
+    "coordinate_y": -80.321681,
+    "image_taken": "https://example.com/image_7.jpg",
+    "state": "Florida",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 8,
+    "created_at": "2023-11-23T08:17:14.349787",
+    "city": "dallas",
+    "coordinate_x": 32.898273,
+    "coordinate_y": -97.439979,
+    "image_taken": "https://example.com/image_8.jpg",
+    "state": "Texas",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 9,
+    "created_at": "2024-07-03T23:20:06.349787",
+    "city": "miami",
+    "coordinate_x": 25.652492,
+    "coordinate_y": -80.784181,
+    "image_taken": "https://example.com/image_9.jpg",
+    "state": "Florida",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 10,
+    "created_at": "2024-03-15T00:12:18.349787",
+    "city": "boston",
+    "coordinate_x": 42.118466,
+    "coordinate_y": -71.368507,
+    "image_taken": "https://example.com/image_10.jpg",
+    "state": "Massachusetts",
+    "animal_name": "bear"
+  },
+  {
+    "id": 11,
+    "created_at": "2024-05-12T03:52:28.349787",
+    "city": "dallas",
+    "coordinate_x": 32.774813,
+    "coordinate_y": -97.107531,
+    "image_taken": "https://example.com/image_11.jpg",
+    "state": "Texas",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 12,
+    "created_at": "2024-04-03T17:46:52.349787",
+    "city": "chicago",
+    "coordinate_x": 41.941254,
+    "coordinate_y": -87.507779,
+    "image_taken": "https://example.com/image_12.jpg",
+    "state": "Illinois",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 13,
+    "created_at": "2024-05-11T22:24:54.349787",
+    "city": "new york city",
+    "coordinate_x": 40.73445,
+    "coordinate_y": -74.253034,
+    "image_taken": "https://example.com/image_13.jpg",
+    "state": "New York",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 14,
+    "created_at": "2024-07-25T18:31:41.349787",
+    "city": "new york city",
+    "coordinate_x": 40.743013,
+    "coordinate_y": -73.713841,
+    "image_taken": "https://example.com/image_14.jpg",
+    "state": "New York",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 15,
+    "created_at": "2024-05-01T03:15:22.349787",
+    "city": "denver",
+    "coordinate_x": 39.686921,
+    "coordinate_y": -105.487086,
+    "image_taken": "https://example.com/image_15.jpg",
+    "state": "Colorado",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 16,
+    "created_at": "2024-08-15T00:24:02.349787",
+    "city": "chicago",
+    "coordinate_x": 41.862203,
+    "coordinate_y": -87.871936,
+    "image_taken": "https://example.com/image_16.jpg",
+    "state": "Illinois",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 17,
+    "created_at": "2023-10-19T08:21:35.349787",
+    "city": "denver",
+    "coordinate_x": 39.591394,
+    "coordinate_y": -105.498529,
+    "image_taken": "https://example.com/image_17.jpg",
+    "state": "Colorado",
+    "animal_name": "fox"
+  },
+  {
+    "id": 18,
+    "created_at": "2024-01-25T18:15:27.349787",
+    "city": "new york city",
+    "coordinate_x": 40.585282,
+    "coordinate_y": -74.195258,
+    "image_taken": "https://example.com/image_18.jpg",
+    "state": "New York",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 19,
+    "created_at": "2024-08-13T06:36:21.349787",
+    "city": "dallas",
+    "coordinate_x": 32.660665,
+    "coordinate_y": -97.45075,
+    "image_taken": "https://example.com/image_19.jpg",
+    "state": "Texas",
+    "animal_name": "bear"
+  },
+  {
+    "id": 20,
+    "created_at": "2024-05-11T18:55:26.349787",
+    "city": "new york city",
+    "coordinate_x": 40.732812,
+    "coordinate_y": -74.16528,
+    "image_taken": "https://example.com/image_20.jpg",
+    "state": "New York",
+    "animal_name": "bear"
+  },
+  {
+    "id": 21,
+    "created_at": "2024-08-09T06:00:38.349787",
+    "city": "miami",
+    "coordinate_x": 26.222136,
+    "coordinate_y": -79.657404,
+    "image_taken": "https://example.com/image_21.jpg",
+    "state": "Florida",
+    "animal_name": "fox"
+  },
+  {
+    "id": 22,
+    "created_at": "2024-04-27T20:03:11.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.131453,
+    "coordinate_y": -118.394519,
+    "image_taken": "https://example.com/image_22.jpg",
+    "state": "California",
+    "animal_name": "deer"
+  },
+  {
+    "id": 23,
+    "created_at": "2024-04-29T11:20:49.349787",
+    "city": "dallas",
+    "coordinate_x": 32.928116,
+    "coordinate_y": -96.625287,
+    "image_taken": "https://example.com/image_23.jpg",
+    "state": "Texas",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 24,
+    "created_at": "2023-11-17T03:25:22.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.76928,
+    "coordinate_y": -83.816519,
+    "image_taken": "https://example.com/image_24.jpg",
+    "state": "Georgia",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 25,
+    "created_at": "2024-02-25T23:42:07.349787",
+    "city": "seattle",
+    "coordinate_x": 47.193886,
+    "coordinate_y": -123.392393,
+    "image_taken": "https://example.com/image_25.jpg",
+    "state": "Washington",
+    "animal_name": "deer"
+  },
+  {
+    "id": 26,
+    "created_at": "2023-12-10T16:06:03.349787",
+    "city": "miami",
+    "coordinate_x": 26.310376,
+    "coordinate_y": -80.249156,
+    "image_taken": "https://example.com/image_26.jpg",
+    "state": "Florida",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 27,
+    "created_at": "2023-11-27T17:18:24.349787",
+    "city": "chicago",
+    "coordinate_x": 41.686089,
+    "coordinate_y": -87.99371,
+    "image_taken": "https://example.com/image_27.jpg",
+    "state": "Illinois",
+    "animal_name": "deer"
+  },
+  {
+    "id": 28,
+    "created_at": "2024-05-26T13:22:12.349787",
+    "city": "chicago",
+    "coordinate_x": 41.883185,
+    "coordinate_y": -87.641231,
+    "image_taken": "https://example.com/image_28.jpg",
+    "state": "Illinois",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 29,
+    "created_at": "2024-08-11T17:22:10.349787",
+    "city": "san jose",
+    "coordinate_x": 37.506663,
+    "coordinate_y": -122.628231,
+    "image_taken": "https://example.com/image_29.jpg",
+    "state": "California",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 30,
+    "created_at": "2024-02-24T02:10:21.349787",
+    "city": "denver",
+    "coordinate_x": 39.838356,
+    "coordinate_y": -105.185042,
+    "image_taken": "https://example.com/image_30.jpg",
+    "state": "Colorado",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 31,
+    "created_at": "2024-08-20T17:47:59.349787",
+    "city": "dallas",
+    "coordinate_x": 32.615179,
+    "coordinate_y": -96.818413,
+    "image_taken": "https://example.com/image_31.jpg",
+    "state": "Texas",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 32,
+    "created_at": "2024-05-07T05:39:52.349787",
+    "city": "chicago",
+    "coordinate_x": 42.049491,
+    "coordinate_y": -87.594004,
+    "image_taken": "https://example.com/image_32.jpg",
+    "state": "Illinois",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 33,
+    "created_at": "2024-02-25T23:51:13.349787",
+    "city": "dallas",
+    "coordinate_x": 32.911993,
+    "coordinate_y": -97.139031,
+    "image_taken": "https://example.com/image_33.jpg",
+    "state": "Texas",
+    "animal_name": "bear"
+  },
+  {
+    "id": 34,
+    "created_at": "2023-11-29T23:01:24.349787",
+    "city": "seattle",
+    "coordinate_x": 47.231659,
+    "coordinate_y": -123.011713,
+    "image_taken": "https://example.com/image_34.jpg",
+    "state": "Washington",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 35,
+    "created_at": "2024-08-17T01:32:12.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.451794,
+    "coordinate_y": -117.399252,
+    "image_taken": "https://example.com/image_35.jpg",
+    "state": "California",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 36,
+    "created_at": "2023-12-28T21:24:39.349787",
+    "city": "chicago",
+    "coordinate_x": 42.07305,
+    "coordinate_y": -87.653922,
+    "image_taken": "https://example.com/image_36.jpg",
+    "state": "Illinois",
+    "animal_name": "bear"
+  },
+  {
+    "id": 37,
+    "created_at": "2024-03-18T19:43:14.349787",
+    "city": "miami",
+    "coordinate_x": 25.901725,
+    "coordinate_y": -80.968676,
+    "image_taken": "https://example.com/image_37.jpg",
+    "state": "Florida",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 38,
+    "created_at": "2023-10-20T18:16:18.349787",
+    "city": "denver",
+    "coordinate_x": 39.511384,
+    "coordinate_y": -104.952534,
+    "image_taken": "https://example.com/image_38.jpg",
+    "state": "Colorado",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 39,
+    "created_at": "2024-08-04T09:41:00.349787",
+    "city": "new york city",
+    "coordinate_x": 40.925706,
+    "coordinate_y": -74.302764,
+    "image_taken": "https://example.com/image_39.jpg",
+    "state": "New York",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 40,
+    "created_at": "2024-10-04T06:06:38.349787",
+    "city": "san jose",
+    "coordinate_x": 37.944122,
+    "coordinate_y": -122.26303,
+    "image_taken": "https://example.com/image_40.jpg",
+    "state": "California",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 41,
+    "created_at": "2023-10-31T00:13:25.349787",
+    "city": "denver",
+    "coordinate_x": 39.978608,
+    "coordinate_y": -105.155593,
+    "image_taken": "https://example.com/image_41.jpg",
+    "state": "Colorado",
+    "animal_name": "fox"
+  },
+  {
+    "id": 42,
+    "created_at": "2024-06-18T11:34:20.349787",
+    "city": "miami",
+    "coordinate_x": 26.102341,
+    "coordinate_y": -80.123391,
+    "image_taken": "https://example.com/image_42.jpg",
+    "state": "Florida",
+    "animal_name": "bear"
+  },
+  {
+    "id": 43,
+    "created_at": "2024-06-13T04:02:49.349787",
+    "city": "chicago",
+    "coordinate_x": 42.051897,
+    "coordinate_y": -87.940143,
+    "image_taken": "https://example.com/image_43.jpg",
+    "state": "Illinois",
+    "animal_name": "deer"
+  },
+  {
+    "id": 44,
+    "created_at": "2023-12-09T22:00:37.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.81295,
+    "coordinate_y": -84.490486,
+    "image_taken": "https://example.com/image_44.jpg",
+    "state": "Georgia",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 45,
+    "created_at": "2024-08-10T08:49:50.349787",
+    "city": "denver",
+    "coordinate_x": 39.886206,
+    "coordinate_y": -104.833022,
+    "image_taken": "https://example.com/image_45.jpg",
+    "state": "Colorado",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 46,
+    "created_at": "2024-05-25T19:18:42.349787",
+    "city": "los angeles",
+    "coordinate_x": 33.995457,
+    "coordinate_y": -118.963594,
+    "image_taken": "https://example.com/image_46.jpg",
+    "state": "California",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 47,
+    "created_at": "2024-03-14T22:54:53.349787",
+    "city": "boston",
+    "coordinate_x": 42.184728,
+    "coordinate_y": -71.239855,
+    "image_taken": "https://example.com/image_47.jpg",
+    "state": "Massachusetts",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 48,
+    "created_at": "2023-11-25T14:08:22.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.479583,
+    "coordinate_y": -118.315251,
+    "image_taken": "https://example.com/image_48.jpg",
+    "state": "California",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 49,
+    "created_at": "2024-10-05T20:40:27.349787",
+    "city": "seattle",
+    "coordinate_x": 47.226616,
+    "coordinate_y": -122.532056,
+    "image_taken": "https://example.com/image_49.jpg",
+    "state": "Washington",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 50,
+    "created_at": "2024-08-25T19:19:55.349787",
+    "city": "miami",
+    "coordinate_x": 25.932829,
+    "coordinate_y": -79.923972,
+    "image_taken": "https://example.com/image_50.jpg",
+    "state": "Florida",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 51,
+    "created_at": "2024-02-17T07:36:30.349787",
+    "city": "dallas",
+    "coordinate_x": 32.998331,
+    "coordinate_y": -97.441829,
+    "image_taken": "https://example.com/image_51.jpg",
+    "state": "Texas",
+    "animal_name": "bear"
+  },
+  {
+    "id": 52,
+    "created_at": "2024-09-21T04:01:02.349787",
+    "city": "miami",
+    "coordinate_x": 25.793867,
+    "coordinate_y": -80.331514,
+    "image_taken": "https://example.com/image_52.jpg",
+    "state": "Florida",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 53,
+    "created_at": "2023-11-22T13:44:15.349787",
+    "city": "chicago",
+    "coordinate_x": 41.538849,
+    "coordinate_y": -87.992362,
+    "image_taken": "https://example.com/image_53.jpg",
+    "state": "Illinois",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 54,
+    "created_at": "2024-04-03T01:33:12.349787",
+    "city": "denver",
+    "coordinate_x": 39.562157,
+    "coordinate_y": -104.668126,
+    "image_taken": "https://example.com/image_54.jpg",
+    "state": "Colorado",
+    "animal_name": "bear"
+  },
+  {
+    "id": 55,
+    "created_at": "2023-11-11T13:30:42.349787",
+    "city": "miami",
+    "coordinate_x": 26.443358,
+    "coordinate_y": -80.465684,
+    "image_taken": "https://example.com/image_55.jpg",
+    "state": "Florida",
+    "animal_name": "bear"
+  },
+  {
+    "id": 56,
+    "created_at": "2023-12-22T14:26:41.349787",
+    "city": "denver",
+    "coordinate_x": 39.836321,
+    "coordinate_y": -104.800011,
+    "image_taken": "https://example.com/image_56.jpg",
+    "state": "Colorado",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 57,
+    "created_at": "2023-11-27T18:30:58.349787",
+    "city": "denver",
+    "coordinate_x": 39.680878,
+    "coordinate_y": -104.540855,
+    "image_taken": "https://example.com/image_57.jpg",
+    "state": "Colorado",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 58,
+    "created_at": "2024-03-25T17:11:54.349787",
+    "city": "boston",
+    "coordinate_x": 42.120068,
+    "coordinate_y": -71.079282,
+    "image_taken": "https://example.com/image_58.jpg",
+    "state": "Massachusetts",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 59,
+    "created_at": "2023-12-10T06:50:16.349787",
+    "city": "denver",
+    "coordinate_x": 39.669903,
+    "coordinate_y": -105.030742,
+    "image_taken": "https://example.com/image_59.jpg",
+    "state": "Colorado",
+    "animal_name": "deer"
+  },
+  {
+    "id": 60,
+    "created_at": "2023-10-17T17:33:12.349787",
+    "city": "miami",
+    "coordinate_x": 26.193325,
+    "coordinate_y": -79.799648,
+    "image_taken": "https://example.com/image_60.jpg",
+    "state": "Florida",
+    "animal_name": "fox"
+  },
+  {
+    "id": 61,
+    "created_at": "2023-11-18T11:49:14.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.33097,
+    "coordinate_y": -118.111077,
+    "image_taken": "https://example.com/image_61.jpg",
+    "state": "California",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 62,
+    "created_at": "2024-02-09T22:35:39.349787",
+    "city": "san jose",
+    "coordinate_x": 37.36722,
+    "coordinate_y": -121.822568,
+    "image_taken": "https://example.com/image_62.jpg",
+    "state": "California",
+    "animal_name": "bear"
+  },
+  {
+    "id": 63,
+    "created_at": "2024-08-17T04:59:08.349787",
+    "city": "los angeles",
+    "coordinate_x": 33.743928,
+    "coordinate_y": -118.416805,
+    "image_taken": "https://example.com/image_63.jpg",
+    "state": "California",
+    "animal_name": "bear"
+  },
+  {
+    "id": 64,
+    "created_at": "2024-09-08T19:59:32.349787",
+    "city": "new york city",
+    "coordinate_x": 40.956052,
+    "coordinate_y": -74.015579,
+    "image_taken": "https://example.com/image_64.jpg",
+    "state": "New York",
+    "animal_name": "deer"
+  },
+  {
+    "id": 65,
+    "created_at": "2024-07-23T11:52:26.349787",
+    "city": "dallas",
+    "coordinate_x": 32.69808,
+    "coordinate_y": -97.355735,
+    "image_taken": "https://example.com/image_65.jpg",
+    "state": "Texas",
+    "animal_name": "bear"
+  },
+  {
+    "id": 66,
+    "created_at": "2024-03-15T23:53:12.349787",
+    "city": "dallas",
+    "coordinate_x": 32.772756,
+    "coordinate_y": -96.642716,
+    "image_taken": "https://example.com/image_66.jpg",
+    "state": "Texas",
+    "animal_name": "fox"
+  },
+  {
+    "id": 67,
+    "created_at": "2024-01-07T23:07:52.349787",
+    "city": "los angeles",
+    "coordinate_x": 33.884185,
+    "coordinate_y": -118.065036,
+    "image_taken": "https://example.com/image_67.jpg",
+    "state": "California",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 68,
+    "created_at": "2024-01-26T14:06:18.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.212429,
+    "coordinate_y": -118.82749,
+    "image_taken": "https://example.com/image_68.jpg",
+    "state": "California",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 69,
+    "created_at": "2023-12-01T00:39:02.349787",
+    "city": "miami",
+    "coordinate_x": 25.780837,
+    "coordinate_y": -79.94941,
+    "image_taken": "https://example.com/image_69.jpg",
+    "state": "Florida",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 70,
+    "created_at": "2024-06-24T06:49:59.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.886653,
+    "coordinate_y": -84.390089,
+    "image_taken": "https://example.com/image_70.jpg",
+    "state": "Georgia",
+    "animal_name": "bear"
+  },
+  {
+    "id": 71,
+    "created_at": "2024-08-02T02:29:49.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.098575,
+    "coordinate_y": -117.821869,
+    "image_taken": "https://example.com/image_71.jpg",
+    "state": "California",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 72,
+    "created_at": "2024-04-25T22:35:30.349787",
+    "city": "chicago",
+    "coordinate_x": 41.943636,
+    "coordinate_y": -87.958967,
+    "image_taken": "https://example.com/image_72.jpg",
+    "state": "Illinois",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 73,
+    "created_at": "2024-01-08T09:30:52.349787",
+    "city": "new york city",
+    "coordinate_x": 40.544885,
+    "coordinate_y": -74.090133,
+    "image_taken": "https://example.com/image_73.jpg",
+    "state": "New York",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 74,
+    "created_at": "2023-12-18T00:41:09.349787",
+    "city": "san jose",
+    "coordinate_x": 37.429119,
+    "coordinate_y": -122.659478,
+    "image_taken": "https://example.com/image_74.jpg",
+    "state": "California",
+    "animal_name": "bear"
+  },
+  {
+    "id": 75,
+    "created_at": "2024-06-14T03:11:22.349787",
+    "city": "boston",
+    "coordinate_x": 42.339108,
+    "coordinate_y": -70.860834,
+    "image_taken": "https://example.com/image_75.jpg",
+    "state": "Massachusetts",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 76,
+    "created_at": "2024-08-14T16:49:19.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.649234,
+    "coordinate_y": -84.250128,
+    "image_taken": "https://example.com/image_76.jpg",
+    "state": "Georgia",
+    "animal_name": "deer"
+  },
+  {
+    "id": 77,
+    "created_at": "2023-12-20T17:17:04.349787",
+    "city": "miami",
+    "coordinate_x": 26.340835,
+    "coordinate_y": -80.804722,
+    "image_taken": "https://example.com/image_77.jpg",
+    "state": "Florida",
+    "animal_name": "fox"
+  },
+  {
+    "id": 78,
+    "created_at": "2023-12-17T20:44:08.349787",
+    "city": "miami",
+    "coordinate_x": 26.467682,
+    "coordinate_y": -79.615522,
+    "image_taken": "https://example.com/image_78.jpg",
+    "state": "Florida",
+    "animal_name": "fox"
+  },
+  {
+    "id": 79,
+    "created_at": "2024-09-05T21:49:44.349787",
+    "city": "san jose",
+    "coordinate_x": 36.892421,
+    "coordinate_y": -122.350696,
+    "image_taken": "https://example.com/image_79.jpg",
+    "state": "California",
+    "animal_name": "bear"
+  },
+  {
+    "id": 80,
+    "created_at": "2024-02-09T19:41:44.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.715655,
+    "coordinate_y": -84.05465,
+    "image_taken": "https://example.com/image_80.jpg",
+    "state": "Georgia",
+    "animal_name": "fox"
+  },
+  {
+    "id": 81,
+    "created_at": "2024-06-21T18:00:00.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.078084,
+    "coordinate_y": -118.918926,
+    "image_taken": "https://example.com/image_81.jpg",
+    "state": "California",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 82,
+    "created_at": "2024-04-07T06:26:52.349787",
+    "city": "boston",
+    "coordinate_x": 42.033938,
+    "coordinate_y": -70.970037,
+    "image_taken": "https://example.com/image_82.jpg",
+    "state": "Massachusetts",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 83,
+    "created_at": "2024-01-07T09:35:04.349787",
+    "city": "dallas",
+    "coordinate_x": 32.602565,
+    "coordinate_y": -96.537339,
+    "image_taken": "https://example.com/image_83.jpg",
+    "state": "Texas",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 84,
+    "created_at": "2024-02-11T05:56:33.349787",
+    "city": "miami",
+    "coordinate_x": 26.060568,
+    "coordinate_y": -79.954585,
+    "image_taken": "https://example.com/image_84.jpg",
+    "state": "Florida",
+    "animal_name": "fox"
+  },
+  {
+    "id": 85,
+    "created_at": "2024-08-07T06:52:22.349787",
+    "city": "dallas",
+    "coordinate_x": 32.826135,
+    "coordinate_y": -96.821205,
+    "image_taken": "https://example.com/image_85.jpg",
+    "state": "Texas",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 86,
+    "created_at": "2023-10-19T17:50:48.349787",
+    "city": "seattle",
+    "coordinate_x": 47.010397,
+    "coordinate_y": -122.437707,
+    "image_taken": "https://example.com/image_86.jpg",
+    "state": "Washington",
+    "animal_name": "fox"
+  },
+  {
+    "id": 87,
+    "created_at": "2024-04-26T19:23:29.349787",
+    "city": "chicago",
+    "coordinate_x": 42.091593,
+    "coordinate_y": -87.730903,
+    "image_taken": "https://example.com/image_87.jpg",
+    "state": "Illinois",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 88,
+    "created_at": "2024-03-24T06:34:46.349787",
+    "city": "san jose",
+    "coordinate_x": 37.342284,
+    "coordinate_y": -121.22737,
+    "image_taken": "https://example.com/image_88.jpg",
+    "state": "California",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 89,
+    "created_at": "2024-09-09T18:50:15.349787",
+    "city": "dallas",
+    "coordinate_x": 32.924013,
+    "coordinate_y": -96.86653,
+    "image_taken": "https://example.com/image_89.jpg",
+    "state": "Texas",
+    "animal_name": "deer"
+  },
+  {
+    "id": 90,
+    "created_at": "2024-08-23T08:30:20.349787",
+    "city": "dallas",
+    "coordinate_x": 32.970453,
+    "coordinate_y": -97.326184,
+    "image_taken": "https://example.com/image_90.jpg",
+    "state": "Texas",
+    "animal_name": "fox"
+  },
+  {
+    "id": 91,
+    "created_at": "2024-02-14T20:14:44.349787",
+    "city": "dallas",
+    "coordinate_x": 32.57909,
+    "coordinate_y": -97.132586,
+    "image_taken": "https://example.com/image_91.jpg",
+    "state": "Texas",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 92,
+    "created_at": "2024-08-21T19:28:40.349787",
+    "city": "san jose",
+    "coordinate_x": 37.153582,
+    "coordinate_y": -121.20256,
+    "image_taken": "https://example.com/image_92.jpg",
+    "state": "California",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 93,
+    "created_at": "2024-03-11T22:19:23.349787",
+    "city": "new york city",
+    "coordinate_x": 40.81332,
+    "coordinate_y": -73.569145,
+    "image_taken": "https://example.com/image_93.jpg",
+    "state": "New York",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 94,
+    "created_at": "2024-07-22T18:23:18.349787",
+    "city": "new york city",
+    "coordinate_x": 40.563721,
+    "coordinate_y": -73.909236,
+    "image_taken": "https://example.com/image_94.jpg",
+    "state": "New York",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 95,
+    "created_at": "2024-03-18T13:34:45.349787",
+    "city": "chicago",
+    "coordinate_x": 41.92235,
+    "coordinate_y": -87.844441,
+    "image_taken": "https://example.com/image_95.jpg",
+    "state": "Illinois",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 96,
+    "created_at": "2024-02-25T13:47:12.349787",
+    "city": "new york city",
+    "coordinate_x": 40.530917,
+    "coordinate_y": -73.982648,
+    "image_taken": "https://example.com/image_96.jpg",
+    "state": "New York",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 97,
+    "created_at": "2023-11-28T16:12:45.349787",
+    "city": "boston",
+    "coordinate_x": 42.080171,
+    "coordinate_y": -70.717391,
+    "image_taken": "https://example.com/image_97.jpg",
+    "state": "Massachusetts",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 98,
+    "created_at": "2024-08-27T16:39:50.349787",
+    "city": "san jose",
+    "coordinate_x": 36.942008,
+    "coordinate_y": -122.559265,
+    "image_taken": "https://example.com/image_98.jpg",
+    "state": "California",
+    "animal_name": "deer"
+  },
+  {
+    "id": 99,
+    "created_at": "2024-04-08T04:37:15.349787",
+    "city": "miami",
+    "coordinate_x": 25.725931,
+    "coordinate_y": -79.611114,
+    "image_taken": "https://example.com/image_99.jpg",
+    "state": "Florida",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 100,
+    "created_at": "2024-08-13T00:42:42.349787",
+    "city": "chicago",
+    "coordinate_x": 41.791503,
+    "coordinate_y": -87.983823,
+    "image_taken": "https://example.com/image_100.jpg",
+    "state": "Illinois",
+    "animal_name": "deer"
+  },
+  {
+    "id": 101,
+    "created_at": "2023-11-16T06:22:10.349787",
+    "city": "san jose",
+    "coordinate_x": 37.153805,
+    "coordinate_y": -122.407211,
+    "image_taken": "https://example.com/image_101.jpg",
+    "state": "California",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 102,
+    "created_at": "2024-06-10T00:23:48.349787",
+    "city": "boston",
+    "coordinate_x": 42.263245,
+    "coordinate_y": -70.734524,
+    "image_taken": "https://example.com/image_102.jpg",
+    "state": "Massachusetts",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 103,
+    "created_at": "2024-02-11T01:17:49.349787",
+    "city": "chicago",
+    "coordinate_x": 41.505362,
+    "coordinate_y": -87.952593,
+    "image_taken": "https://example.com/image_103.jpg",
+    "state": "Illinois",
+    "animal_name": "fox"
+  },
+  {
+    "id": 104,
+    "created_at": "2023-12-21T23:45:13.349787",
+    "city": "chicago",
+    "coordinate_x": 41.981717,
+    "coordinate_y": -87.792093,
+    "image_taken": "https://example.com/image_104.jpg",
+    "state": "Illinois",
+    "animal_name": "fox"
+  },
+  {
+    "id": 105,
+    "created_at": "2023-10-14T19:38:40.349787",
+    "city": "miami",
+    "coordinate_x": 25.678319,
+    "coordinate_y": -79.617649,
+    "image_taken": "https://example.com/image_105.jpg",
+    "state": "Florida",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 106,
+    "created_at": "2023-12-17T17:01:22.349787",
+    "city": "miami",
+    "coordinate_x": 25.606797,
+    "coordinate_y": -80.655134,
+    "image_taken": "https://example.com/image_106.jpg",
+    "state": "Florida",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 107,
+    "created_at": "2024-09-03T00:11:11.349787",
+    "city": "chicago",
+    "coordinate_x": 41.72611,
+    "coordinate_y": -87.80297,
+    "image_taken": "https://example.com/image_107.jpg",
+    "state": "Illinois",
+    "animal_name": "deer"
+  },
+  {
+    "id": 108,
+    "created_at": "2023-12-05T08:20:24.349787",
+    "city": "new york city",
+    "coordinate_x": 40.699596,
+    "coordinate_y": -73.722544,
+    "image_taken": "https://example.com/image_108.jpg",
+    "state": "New York",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 109,
+    "created_at": "2023-10-13T16:22:44.349787",
+    "city": "new york city",
+    "coordinate_x": 40.56125,
+    "coordinate_y": -74.323167,
+    "image_taken": "https://example.com/image_109.jpg",
+    "state": "New York",
+    "animal_name": "bear"
+  },
+  {
+    "id": 110,
+    "created_at": "2024-05-24T13:44:13.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.216074,
+    "coordinate_y": -117.924959,
+    "image_taken": "https://example.com/image_110.jpg",
+    "state": "California",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 111,
+    "created_at": "2023-10-26T20:04:56.349787",
+    "city": "boston",
+    "coordinate_x": 42.425304,
+    "coordinate_y": -71.131018,
+    "image_taken": "https://example.com/image_111.jpg",
+    "state": "Massachusetts",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 112,
+    "created_at": "2024-02-20T19:13:05.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.677403,
+    "coordinate_y": -84.492166,
+    "image_taken": "https://example.com/image_112.jpg",
+    "state": "Georgia",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 113,
+    "created_at": "2023-12-23T03:24:48.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.356665,
+    "coordinate_y": -118.920484,
+    "image_taken": "https://example.com/image_113.jpg",
+    "state": "California",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 114,
+    "created_at": "2023-10-25T19:52:55.349787",
+    "city": "atlanta",
+    "coordinate_x": 33.869567,
+    "coordinate_y": -84.20983,
+    "image_taken": "https://example.com/image_114.jpg",
+    "state": "Georgia",
+    "animal_name": "deer"
+  },
+  {
+    "id": 115,
+    "created_at": "2024-02-25T19:31:15.349787",
+    "city": "miami",
+    "coordinate_x": 25.519654,
+    "coordinate_y": -80.645574,
+    "image_taken": "https://example.com/image_115.jpg",
+    "state": "Florida",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 116,
+    "created_at": "2023-12-08T21:20:34.349787",
+    "city": "chicago",
+    "coordinate_x": 41.532425,
+    "coordinate_y": -87.51402,
+    "image_taken": "https://example.com/image_116.jpg",
+    "state": "Illinois",
+    "animal_name": "fox"
+  },
+  {
+    "id": 117,
+    "created_at": "2024-01-17T00:29:06.349787",
+    "city": "chicago",
+    "coordinate_x": 41.868008,
+    "coordinate_y": -87.747347,
+    "image_taken": "https://example.com/image_117.jpg",
+    "state": "Illinois",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 118,
+    "created_at": "2024-08-21T22:25:00.349787",
+    "city": "boston",
+    "coordinate_x": 42.362625,
+    "coordinate_y": -70.52697,
+    "image_taken": "https://example.com/image_118.jpg",
+    "state": "Massachusetts",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 119,
+    "created_at": "2023-10-14T17:17:50.349787",
+    "city": "chicago",
+    "coordinate_x": 41.511379,
+    "coordinate_y": -87.644612,
+    "image_taken": "https://example.com/image_119.jpg",
+    "state": "Illinois",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 120,
+    "created_at": "2024-08-18T15:49:57.349787",
+    "city": "boston",
+    "coordinate_x": 42.092645,
+    "coordinate_y": -71.109845,
+    "image_taken": "https://example.com/image_120.jpg",
+    "state": "Massachusetts",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 121,
+    "created_at": "2024-05-18T05:00:42.349787",
+    "city": "denver",
+    "coordinate_x": 39.940374,
+    "coordinate_y": -105.465547,
+    "image_taken": "https://example.com/image_121.jpg",
+    "state": "Colorado",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 122,
+    "created_at": "2023-10-08T18:52:18.349787",
+    "city": "san jose",
+    "coordinate_x": 36.914721,
+    "coordinate_y": -122.131392,
+    "image_taken": "https://example.com/image_122.jpg",
+    "state": "California",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 123,
+    "created_at": "2024-08-10T00:18:58.349787",
+    "city": "los angeles",
+    "coordinate_x": 33.945337,
+    "coordinate_y": -118.998241,
+    "image_taken": "https://example.com/image_123.jpg",
+    "state": "California",
+    "animal_name": "bear"
+  },
+  {
+    "id": 124,
+    "created_at": "2024-09-08T18:59:26.349787",
+    "city": "miami",
+    "coordinate_x": 26.0858,
+    "coordinate_y": -79.696613,
+    "image_taken": "https://example.com/image_124.jpg",
+    "state": "Florida",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 125,
+    "created_at": "2024-08-02T08:38:28.349787",
+    "city": "denver",
+    "coordinate_x": 39.960733,
+    "coordinate_y": -105.152138,
+    "image_taken": "https://example.com/image_125.jpg",
+    "state": "Colorado",
+    "animal_name": "fox"
+  },
+  {
+    "id": 126,
+    "created_at": "2024-09-13T16:53:29.349787",
+    "city": "new york city",
+    "coordinate_x": 40.843276,
+    "coordinate_y": -73.965486,
+    "image_taken": "https://example.com/image_126.jpg",
+    "state": "New York",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 127,
+    "created_at": "2024-07-16T17:50:20.349787",
+    "city": "dallas",
+    "coordinate_x": 32.695781,
+    "coordinate_y": -96.731936,
+    "image_taken": "https://example.com/image_127.jpg",
+    "state": "Texas",
+    "animal_name": "bear"
+  },
+  {
+    "id": 128,
+    "created_at": "2023-10-24T22:49:45.349787",
+    "city": "san jose",
+    "coordinate_x": 37.194961,
+    "coordinate_y": -122.670192,
+    "image_taken": "https://example.com/image_128.jpg",
+    "state": "California",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 129,
+    "created_at": "2024-04-05T16:47:02.349787",
+    "city": "dallas",
+    "coordinate_x": 32.831923,
+    "coordinate_y": -96.780247,
+    "image_taken": "https://example.com/image_129.jpg",
+    "state": "Texas",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 130,
+    "created_at": "2024-08-21T01:39:24.349787",
+    "city": "seattle",
+    "coordinate_x": 47.28484,
+    "coordinate_y": -122.217025,
+    "image_taken": "https://example.com/image_130.jpg",
+    "state": "Washington",
+    "animal_name": "skunk"
+  },
+  {
+    "id": 131,
+    "created_at": "2024-01-18T15:29:04.349787",
+    "city": "chicago",
+    "coordinate_x": 41.710505,
+    "coordinate_y": -87.966725,
+    "image_taken": "https://example.com/image_131.jpg",
+    "state": "Illinois",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 132,
+    "created_at": "2024-07-22T00:19:34.349787",
+    "city": "chicago",
+    "coordinate_x": 41.766383,
+    "coordinate_y": -87.693239,
+    "image_taken": "https://example.com/image_132.jpg",
+    "state": "Illinois",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 133,
+    "created_at": "2024-07-07T20:20:43.349787",
+    "city": "seattle",
+    "coordinate_x": 47.47047,
+    "coordinate_y": -123.09798,
+    "image_taken": "https://example.com/image_133.jpg",
+    "state": "Washington",
+    "animal_name": "bear"
+  },
+  {
+    "id": 134,
+    "created_at": "2023-10-28T03:17:56.349787",
+    "city": "new york city",
+    "coordinate_x": 40.560799,
+    "coordinate_y": -74.449349,
+    "image_taken": "https://example.com/image_134.jpg",
+    "state": "New York",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 135,
+    "created_at": "2024-07-07T01:24:18.349787",
+    "city": "san jose",
+    "coordinate_x": 37.216069,
+    "coordinate_y": -121.499412,
+    "image_taken": "https://example.com/image_135.jpg",
+    "state": "California",
+    "animal_name": "eagle"
+  },
+  {
+    "id": 136,
+    "created_at": "2024-01-05T14:07:47.349787",
+    "city": "new york city",
+    "coordinate_x": 40.793073,
+    "coordinate_y": -74.113597,
+    "image_taken": "https://example.com/image_136.jpg",
+    "state": "New York",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 137,
+    "created_at": "2024-05-12T05:53:35.349787",
+    "city": "los angeles",
+    "coordinate_x": 33.856286,
+    "coordinate_y": -117.600391,
+    "image_taken": "https://example.com/image_137.jpg",
+    "state": "California",
+    "animal_name": "bear"
+  },
+  {
+    "id": 138,
+    "created_at": "2024-04-13T05:18:34.349787",
+    "city": "chicago",
+    "coordinate_x": 41.843827,
+    "coordinate_y": -87.955386,
+    "image_taken": "https://example.com/image_138.jpg",
+    "state": "Illinois",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 139,
+    "created_at": "2024-04-01T21:23:45.349787",
+    "city": "new york city",
+    "coordinate_x": 40.810188,
+    "coordinate_y": -74.460009,
+    "image_taken": "https://example.com/image_139.jpg",
+    "state": "New York",
+    "animal_name": "wolf"
+  },
+  {
+    "id": 140,
+    "created_at": "2023-10-16T20:13:28.349787",
+    "city": "denver",
+    "coordinate_x": 39.93164,
+    "coordinate_y": -105.180676,
+    "image_taken": "https://example.com/image_140.jpg",
+    "state": "Colorado",
+    "animal_name": "rabbit"
+  },
+  {
+    "id": 141,
+    "created_at": "2024-07-28T04:15:50.349787",
+    "city": "los angeles",
+    "coordinate_x": 34.22795,
+    "coordinate_y": -117.717153,
+    "image_taken": "https://example.com/image_141.jpg",
+    "state": "California",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 142,
+    "created_at": "2024-07-24T21:19:55.349787",
+    "city": "denver",
+    "coordinate_x": 39.972018,
+    "coordinate_y": -104.677029,
+    "image_taken": "https://example.com/image_142.jpg",
+    "state": "Colorado",
+    "animal_name": "raccoon"
+  },
+  {
+    "id": 143,
+    "created_at": "2023-11-10T01:30:50.349787",
+    "city": "new york city",
+    "coordinate_x": 40.915249,
+    "coordinate_y": -73.696431,
+    "image_taken": "https://example.com/image_143.jpg",
+    "state": "New York",
+    "animal_name": "deer"
+  },
+  {
+    "id": 144,
+    "created_at": "2023-11-18T07:57:51.349787",
+    "city": "denver",
+    "coordinate_x": 39.733001,
+    "coordinate_y": -104.585839,
+    "image_taken": "https://example.com/image_144.jpg",
+    "state": "Colorado",
+    "animal_name": "bear"
+  },
+  {
+    "id": 145,
+    "created_at": "2024-06-27T19:28:12.349787",
+    "city": "chicago",
+    "coordinate_x": 42.057101,
+    "coordinate_y": -87.773573,
+    "image_taken": "https://example.com/image_145.jpg",
+    "state": "Illinois",
+    "animal_name": "bear"
+  },
+  {
+    "id": 146,
+    "created_at": "2024-05-27T15:27:32.349787",
+    "city": "chicago",
+    "coordinate_x": 41.91447,
+    "coordinate_y": -87.787473,
+    "image_taken": "https://example.com/image_146.jpg",
+    "state": "Illinois",
+    "animal_name": "hawk"
+  },
+  {
+    "id": 147,
+    "created_at": "2024-08-06T06:46:07.349787",
+    "city": "denver",
+    "coordinate_x": 39.866314,
+    "coordinate_y": -105.431122,
+    "image_taken": "https://example.com/image_147.jpg",
+    "state": "Colorado",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 148,
+    "created_at": "2023-12-23T22:13:39.349787",
+    "city": "miami",
+    "coordinate_x": 26.045125,
+    "coordinate_y": -79.616685,
+    "image_taken": "https://example.com/image_148.jpg",
+    "state": "Florida",
+    "animal_name": "deer"
+  },
+  {
+    "id": 149,
+    "created_at": "2024-06-21T04:30:22.349787",
+    "city": "seattle",
+    "coordinate_x": 47.085917,
+    "coordinate_y": -122.665579,
+    "image_taken": "https://example.com/image_149.jpg",
+    "state": "Washington",
+    "animal_name": "coyote"
+  },
+  {
+    "id": 150,
+    "created_at": "2024-03-11T13:26:14.349787",
+    "city": "chicago",
+    "coordinate_x": 41.742495,
+    "coordinate_y": -87.708172,
+    "image_taken": "https://example.com/image_150.jpg",
+    "state": "Illinois",
+    "animal_name": "wolf"
+  }
+]

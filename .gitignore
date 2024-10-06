@@ -2,3 +2,4 @@ Classifier/dataset/
 Classifier/*.pth
 *.env
 __pycache__/
+node_modules
