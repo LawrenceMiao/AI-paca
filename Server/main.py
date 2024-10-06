@@ -4,18 +4,27 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from supabase import Client, create_client
 import io
-
+import httpx
 import torch
-from fastapi import FastAPI, File, UploadFile, Request
+from fastapi import FastAPI, File, UploadFile, Request, HTTPException
 from fastapi.responses import JSONResponse
 from PIL import Image
 from torchvision import models, transforms
+from pydantic import BaseModel
 
+class Animal(BaseModel):
+    coordinate_x: float
+    coordinate_y: float
+    image_taken: str
+    city: str
+    state: str
+    animal_name: str
 
 app = FastAPI()
 
 url = config("SUPERBASE_URL")
 key = config("SUPERBASE_KEY")
+geo_key = config("GEO_KEY")
 
 supabase: Client = create_client(url, key)
 
@@ -31,6 +40,15 @@ async def read_root():
     """Test server running"""
     return {"message": "FastAPI application"}
 
+# base API endpoint to get all the animals in the table
+@app.get("/all_data")
+async def get_data():
+    animals = supabase.table("animals").select("*").execute()
+
+    if not animals:
+        return {"message": "No Animals exist in the database."}
+
+    return animals.data
 
 # return specific animals
 @app.get("/all_data/{animal}")
@@ -56,17 +74,64 @@ async def get_animal(animal: str, request: Request):
 
 # (potential) return specific coordinates .
 
+# change coordinates.
+# DO NOT USE UNLESS NEEDED
+# @app.get("/update_coordinates")
+# async def update_coordinates(city: str = "dallas"):
+#     # Update the coordinates for a specific city
+#     response = supabase.table("animals").update({
+#         "coordinate_x": 32.779167,
+#         "coordinate_y": -96.808891
+#     }).eq("city", city).execute()
 
-# base API endpoint to get all the animals in the table
-@app.get("/all_data")
-async def get_data():
-    animals = supabase.table("animals").select("*").execute()
+#     return {"message": "Coordinates updated successfully", "data": response.data}
 
-    if not animals:
-        return {"message": "No Animals exist in the database."}
 
-    return animals.data
+# POST endpoint to add a new animal
+@app.post("/add_animal")
+async def add_animal(animal: Animal):
+    # Access the body data directly from the animal parameter
+    animal_data = animal.dict()  # Convert Pydantic model to dict
 
+    # Insert the data into the Supabase table
+    response = supabase.table("animals").insert(animal_data).execute()
+
+    # Check for errors
+    if response.error:
+        raise HTTPException(status_code=400, detail=response.error.message)
+
+    return {"message": "Animal added successfully", "data": response.data}
+
+
+@app.get("/geocode/?lat={lat}&lon={lon}")
+async def reverse_geocode(lat: float, lon: float):
+    # Define the OpenCage API URL
+    api_url = f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={geo_key}"
+
+    # Make the HTTP request
+    async with httpx.AsyncClient() as client:
+        response = await client.get(api_url)
+
+    # Parse the JSON response
+    data = response.json()
+
+    if data['total_results'] == 0:
+        raise HTTPException(status_code=404, detail="Location not found")
+
+    # Extract city, state, and country from the API response
+    components = data['results'][0]['components']
+    city = components.get('city') or components.get('town') or components.get('village')
+    state = components.get('state')
+    country = components.get('country')
+
+    if not city or not state:
+        raise HTTPException(status_code=404, detail="City or state not found")
+
+    return {
+        "city": city,
+        "state": state,
+        "country": country
+    }
 
 MODEL_DESTINATION = "resnet18_pretrained.pth"
 
