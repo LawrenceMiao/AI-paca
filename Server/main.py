@@ -107,16 +107,16 @@ async def add_animal(
 ):
     json_to_submit = {}
 
-    # Upload the image to Supabase Storage
-    image_data = await image_taken.read()  # Read the uploaded image
-    image_path = f"images/{image_taken.filename}"  # Define the path for the image
+    # # Upload the image to Supabase Storage
+    # image_data = await image_taken.read()  # Read the uploaded image
+    # image_path = f"images/{image_taken.filename}"  # Define the path for the image
 
-    # Upload the image to Supabase Storage
-    response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
+    # # Upload the image to Supabase Storage
+    # response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
 
-    # Check if upload was successful
-    if response.status_code != 200:
-        raise HTTPException(status_code=400, detail="Image upload failed.")
+    # # Check if upload was successful
+    # if response.status_code != 200:
+    #     raise HTTPException(status_code=400, detail="Image upload failed.")
 
     # # Get public URL for the uploaded image
     # image_url = supabase.storage.from_(IMAGE_BUCKET).get_public_url(image_path)
