@@ -24,10 +24,15 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "title": "My FastAPI Website"})
 
+# return specific animals
+
+# return specific locations
+
+# potential, 
+
 # Example API endpoint
 @app.get("/api/data")
 async def get_data():
     animals = supabase.table("animals").select("*").execute()
-    print(animals.data)
-    return {"data" : animals.json}
+    return animals.data
 
