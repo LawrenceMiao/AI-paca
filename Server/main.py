@@ -10,6 +10,15 @@ from fastapi import FastAPI, File, UploadFile, Request, HTTPException
 from fastapi.responses import JSONResponse
 from PIL import Image
 from torchvision import models, transforms
+from pydantic import BaseModel
+
+class Animal(BaseModel):
+    coordinate_x: float
+    coordinate_y: float
+    image_taken: str
+    city: str
+    state: str
+    animal_name: str
 
 
 app = FastAPI()
@@ -124,14 +133,16 @@ async def get_data():
     return animals.data
 
 
-# add new entry to the animals table
 # POST endpoint to add a new animal
 @app.post("/add_animal")
 async def add_animal(animal: Animal):
-    # Insert the animal data into the Supabase table
-    response = supabase.table("animals").insert(animal.dict()).execute()
+    # Access the body data directly from the animal parameter
+    animal_data = animal.dict()  # Convert Pydantic model to dict
 
-    # Check for errors in the response
+    # Insert the data into the Supabase table
+    response = supabase.table("animals").insert(animal_data).execute()
+
+    # Check for errors
     if response.error:
         raise HTTPException(status_code=400, detail=response.error.message)
 
