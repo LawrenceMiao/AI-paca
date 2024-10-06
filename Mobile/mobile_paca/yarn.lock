@@ -4214,10 +4214,15 @@ react-native-camera@^4.2.1:
   dependencies:
     prop-types "^15.6.2"
 
-react-native-icons@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.npmjs.org/react-native-icons/-/react-native-icons-0.7.1.tgz"
-  integrity sha512-UigJh4CQ+NmRThGm/7MlkdCnuR0u3Bx3EO60gKCDNeMGM6X+vfYMVUXnruefJ5SrcSguQhkFLSS0oPm9B4+FDg==
+react-native-geolocation-service@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.npmjs.org/react-native-geolocation-service/-/react-native-geolocation-service-5.3.1.tgz"
+  integrity sha512-LTXPtPNmrdhx+yeWG47sAaCgQc3nG1z+HLLHlhK/5YfOgfLcAb9HAkhREPjQKPZOUx8pKZMIpdGFUGfJYtimXQ==
+
+react-native-vision-camera@^4.5.3:
+  version "4.5.3"
+  resolved "https://registry.npmjs.org/react-native-vision-camera/-/react-native-vision-camera-4.5.3.tgz"
+  integrity sha512-wulpS6ZY6SwuYMDD8csIFMFJ6lXeQq4bJvaAhwEnr0R9cZ53jDUs0/SFZva6UFEPIw64h0IdrrzuVTEufhDSgQ==
 
 react-native@*, react-native@0.75.4:
   version "0.75.4"
