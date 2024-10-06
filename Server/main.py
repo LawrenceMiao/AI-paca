@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class Animal(BaseModel):
     coordinate_x: float
     coordinate_y: float
-    image_taken: str
+    image_taken: UploadFile
     animal_label_human: str
 
 
@@ -32,6 +32,8 @@ app = FastAPI()
 url = config("SUPERBASE_URL")
 key = config("SUPERBASE_KEY")
 geo_key = config("GEO_KEY")
+
+IMAGE_BUCKET = "images"
 
 supabase: Client = create_client(url, key)
 
@@ -100,53 +102,66 @@ async def get_animal(animal: str, request: Request):
 @app.post("/add_animal")
 async def add_animal(animal: Animal):
     json_to_submit = {}
-    # Access the body data directly from the animal parameter
     print(animal)
-    animal_data = animal.dict()  # Convert Pydantic model to dict
 
-    # get id
-    animals = supabase.table("animals").select("*").execute()
+    # Upload the image to Supabase Storage
+    image_data = await animal.image_taken.read()  # Read the uploaded image
+    image_path = (
+        f"images/{animal.image_taken.filename}"  # Define the path for the image
+    )
 
-    # Check if the data is empty
-    if not animals.data:
-        return {"message": "No Animals exist in the database."}
+    # Upload the image to Supabase Storage
+    response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
 
-    sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+    # Check if upload was successful
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Image upload failed.")
 
-    # Return the ID of the last animal
-    last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
+    # Get public URL for the uploaded image
+    image_url = supabase.storage.from_(IMAGE_BUCKET).get_public_url(image_path)
 
-    json_to_submit[id] = last_animal_id + 1
+    # # get id
+    # animals = supabase.table("animals").select("*").execute()
+
+    # # Check if the data is empty
+    # if not animals.data:
+    #     return {"message": "No Animals exist in the database."}
+
+    # sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+
+    # # Return the ID of the last animal
+    # last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
+
+    # json_to_submit[id] = last_animal_id + 1
 
     # get timestamp of upload
     created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
     json_to_submit["created_at"] = created_at
 
-    # get predicted AI
-    async with httpx.AsyncClient() as client:
-        with open(animal_data["image_taken"], "rb") as image_file:
-            files = {"file": image_file}
-            response = await client.post("/predict", files=files)
+    image_bytes = await animal.image_taken.read()
+    input_tensor = preprocess_image(image_bytes)
 
-            if response.status_code == 200:
-                response = response.json()
-                prediction = response["prediction"].lower()
-                if prediction != (animal_data["animal_label_human"].lower()):
-                    json_to_submit["animal_name"] = animal_data[
-                        "animal_label_human"
-                    ].lower()
-                else:
-                    json_to_submit["animal_name"] = prediction.lower()
-            else:
-                return {"error": response.text}
+    # Run the model and get prediction
+    with torch.no_grad():
+        output = model(input_tensor)
+        predicted_idx = output.argmax(dim=1).item()
+
+    # Get the class name
+    # predicted_class = CLASS_NAMES[predicted_idx]
+    predicted_class = predicted_idx
+    # ASSIGN json_to_submit
+    json_to_submit["animal_name"] = predicted_class
 
     # fill the rest of the data from the animal_data
-    for i in range(len(animal_data.keys()) - 1):
-        cur_key = animal_data.keys()[i]
-        json_to_submit[cur_key] = animal_data[cur_key]
+    for i in range(len(animal.keys()) - 1):
+        cur_key = animal.keys()[i]
+        if cur_key == "image_taken":
+            json_to_submit[cur_key] = image_url
+        else:
+            json_to_submit[cur_key] = animal[cur_key]
 
     # get city and state
-    geo_url = f"http://localhost:8000/geocode/?lat={animal_data['coordinate_x']}&lon={animal_data['coordinate_y']}"
+    geo_url = f"http://localhost:8000/geocode/?lat={animal['coordinate_x']}&lon={animal['coordinate_y']}"
 
     async with httpx.AsyncClient() as client:
         geocode_response = await client.get(geo_url)
