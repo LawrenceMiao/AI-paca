@@ -13,7 +13,7 @@ function MapComponent({ data }) {
         duration: 1.7,
         ease: 'easeOut'
       }}
-      className="my-5 overflow-hidden relative z-0">
+      className="my-5 overflow-hidden relative z-0 rounded-md drop-shadow-lg">
       <MapContainer center={position} zoom={zoom} className="overflow-visible" style={{ height: '600px', width: '100%' }}>
         <TileLayer
           attribution='&copy; <a href="https://osm.org/">OpenStreetMap</a> contributors'

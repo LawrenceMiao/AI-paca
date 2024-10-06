@@ -129,7 +129,7 @@ function DataVisualization({ data, selectedCity }) {
           ease: 'easeOut'
         }}
         className='my-24'>
-        <h2 className=" text-2xl font-bold mb-2 text-center">
+        <h2 className=" text-2xl font-bold mb-2 text-center text-teal-600">
           Animal Distribution {selectedCity !== 'all' ? `in ${selectedCity}` : ''}
         </h2>
         <div className="w-full mb-16 h-96">
@@ -145,7 +145,7 @@ function DataVisualization({ data, selectedCity }) {
           ease: 'easeOut'
         }}
         className='my-24'>
-        <h2 className="text-2xl font-bold mb-2 text-center">
+        <h2 className="text-2xl font-bold mb-2 text-center text-teal-600">
           Sightings Over Time {selectedCity !== 'all' ? `in ${selectedCity}` : ''}
         </h2>
         <div className="w-full h-96">

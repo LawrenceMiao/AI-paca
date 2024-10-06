@@ -115,10 +115,13 @@ function Visualization() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-9  ">Animal Sightings Map</h1>
+    <div className="container mx-auto p-4 ">
+      <h1 className="text-3xl font-bold text-center mb-2 text-teal-600  ">Animal Sightings Map</h1>
+      <p className="mb-9 text-md  text-slate-700  text-center ">
+        Visualize the data using our interactive map and filter by animal, city, and date. Download data in CSV, JSON, or EXCEL format.
+      </p>
       {error && <p className="text-red-500">{error}</p>}
-      <div className='flex flex-row justify-between items-end'>
+      <div className='flex lg:flex-row  md:flex-col sm:flex-col sm:items-center lg:items-end justify-between '>
 
 
         <Filters
@@ -137,7 +140,7 @@ function Visualization() {
         <div className="flex flex-wrap gap-2 mb-4">
           <motion.button
             onClick={() => downloadData('csv')}
-            className="bg-blue-400 hover:bg-slate-700 text-white py-2 px-4 rounded"
+            className="bg-blue-400 hover:bg-slate-700 text-white py-2 px-4 rounded drop-shadow-md"
             initial={{ scale: 1 }}
             whileHover={{ scale: 0.95 }}
           >
@@ -145,7 +148,7 @@ function Visualization() {
           </motion.button>
           <motion.button
             onClick={() => downloadData('json')}
-            className="bg-blue-400 hover:bg-slate-700 text-white py-2 px-4 rounded"
+            className="bg-blue-400 hover:bg-slate-700 text-white py-2 px-4 rounded drop-shadow-md"
             initial={{ scale: 1 }}
             whileHover={{ scale: 0.95 }}
           >
@@ -153,7 +156,7 @@ function Visualization() {
           </motion.button>
           <motion.button
             onClick={() => downloadData('excel')}
-            className="bg-blue-400 hover:bg-slate-700 text-white py-2 px-4 rounded"
+            className="bg-blue-400 hover:bg-slate-700 text-white py-2 px-4 rounded drop-shadow-md"
             initial={{ scale: 1 }}
             whileHover={{ scale: 0.95 }}
           >
