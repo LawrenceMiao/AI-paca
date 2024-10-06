@@ -1,1 +1,3 @@
+Classifier/dataset/
+Classifier/*.pth
 .env
