@@ -7,7 +7,7 @@ import io
 import httpx
 from datetime import datetime
 import torch
-from fastapi import FastAPI, File, UploadFile, Request, HTTPException
+from fastapi import FastAPI, File, UploadFile, Request, HTTPException, Form
 from fastapi.responses import JSONResponse
 from PIL import Image
 from torchvision import models, transforms
@@ -20,10 +20,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-class Animal(BaseModel):
-    coordinate_x: float
-    coordinate_y: float
-    animal_label_human: str
+# class Animal(BaseModel):
+#     coordinate_x: float
+#     coordinate_y: float
+#     animal_label_human: str
 
 
 app = FastAPI()
@@ -99,14 +99,17 @@ async def get_animal(animal: str, request: Request):
 
 # POST endpoint to add a new animal
 @app.post("/add_animal")
-async def add_animal(animal: Animal, image_taken: UploadFile = File(...)):
+async def add_animal(
+    coordinate_x: float = Form(...),
+    coordinate_y: float = Form(...),
+    animal_label_human: str = Form(...),
+    image_taken: UploadFile = File(...),
+):
     json_to_submit = {}
 
     # Upload the image to Supabase Storage
-    image_data = await animal.image_taken.read()  # Read the uploaded image
-    image_path = (
-        f"images/{animal.image_taken.filename}"  # Define the path for the image
-    )
+    image_data = await image_taken.read()  # Read the uploaded image
+    image_path = f"images/{image_taken.filename}"  # Define the path for the image
 
     # Upload the image to Supabase Storage
     response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
@@ -136,7 +139,7 @@ async def add_animal(animal: Animal, image_taken: UploadFile = File(...)):
     created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
     json_to_submit["created_at"] = created_at
 
-    image_bytes = await animal.image_taken.read()
+    image_bytes = await image_taken.read()
     input_tensor = preprocess_image(image_bytes)
 
     # Run the model and get prediction
@@ -151,15 +154,15 @@ async def add_animal(animal: Animal, image_taken: UploadFile = File(...)):
     json_to_submit["animal_name"] = predicted_class
 
     # fill the rest of the data from the animal_data
-    for i in range(len(animal.keys()) - 1):
-        cur_key = animal.keys()[i]
-        if cur_key == "image_taken":
-            json_to_submit[cur_key] = image_url
-        else:
-            json_to_submit[cur_key] = animal[cur_key]
+    # for i in range(len(animal.keys()) - 1):
+    #     cur_key = animal.keys()[i]
+    #     if cur_key == "image_taken":
+    #         json_to_submit[cur_key] = image_url
+    #     else:
+    #         json_to_submit[cur_key] = animal[cur_key]
 
     # get city and state
-    geo_url = f"http://localhost:8000/geocode/?lat={animal['coordinate_x']}&lon={animal['coordinate_y']}"
+    geo_url = f"http://localhost:8000/geocode/?lat={coordinate_x}&lon={coordinate_y}"
 
     async with httpx.AsyncClient() as client:
         geocode_response = await client.get(geo_url)
