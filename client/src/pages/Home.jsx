@@ -35,6 +35,8 @@ const Home = () => {
         <img ref={gifRef} src={aipaca} alt="A looping GIF" />
       </motion.div>
 
+
+
       <div
         className="mt-40 flex lg:flex-row sm:flex-col sm:gap-20 items-center justify-center md:justify-between mx-auto max-w-7xl py-12 px-4"
       >
