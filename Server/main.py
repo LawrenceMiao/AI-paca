@@ -6,7 +6,7 @@ from supabase import Client, create_client
 import io
 
 import torch
-from fastapi import FastAPI, File, UploadFile, Request
+from fastapi import FastAPI, File, UploadFile, Request, HTTPException
 from fastapi.responses import JSONResponse
 from PIL import Image
 from torchvision import models, transforms
@@ -122,6 +122,20 @@ async def get_data():
         return {"message": "No Animals exist in the database."}
 
     return animals.data
+
+
+# add new entry to the animals table
+# POST endpoint to add a new animal
+@app.post("/add_animal")
+async def add_animal(animal: Animal):
+    # Insert the animal data into the Supabase table
+    response = supabase.table("animals").insert(animal.dict()).execute()
+
+    # Check for errors in the response
+    if response.error:
+        raise HTTPException(status_code=400, detail=response.error.message)
+
+    return {"message": "Animal added successfully", "data": response.data}
 
 
 MODEL_DESTINATION = "resnet18_pretrained.pth"
