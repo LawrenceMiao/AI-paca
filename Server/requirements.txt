@@ -3,3 +3,5 @@ uvicorn
 python-decouple
 supabase
 python-multipart
+torch
+torchvision

@@ -1,0 +1,99 @@
+id,created_at,city,coordinate_x,coordinate_y,image_taken,state,animal_name
+3,2024-10-06 04:32:19.192866+00,los angeles,-13.4276,-27.0385,some link,california,hummingbird
+4,2024-10-06 04:32:19.192866+00,houston,-80.772,172.6206,some link,texas,possum
+5,2024-10-06 04:32:19.192866+00,los angeles,50.841,-165.4097,some link,california,deer
+6,2024-10-06 04:32:19.192866+00,san antonio,59.8202,85.1154,some link,texas,hummingbird
+7,2024-10-06 04:32:19.192866+00,new york,33.4591,-86.6463,some link,new york,squirrel
+8,2024-10-06 04:32:19.192866+00,houston,-79.1148,101.8595,some link,texas,deer
+9,2024-10-06 04:32:19.192866+00,dallas,0.7712,47.5484,some link,texas,woodpecker
+10,2024-10-06 04:32:19.192866+00,san antonio,-52.2868,0.195,some link,texas,raccoon
+11,2024-10-06 04:32:19.192866+00,san antonio,37.0986,11.3043,some link,texas,coyote
+12,2024-10-06 04:32:19.192866+00,chicago,-18.5277,-7.4838,some link,illinois,owl
+13,2024-10-06 04:32:19.192866+00,dallas,15.6527,-179.3349,some link,texas,fox
+14,2024-10-06 04:32:19.192866+00,philadelphia,-27.0381,30.1372,some link,pennsylvania,owl
+15,2024-10-06 04:32:19.192866+00,new york,74.0702,-42.6695,some link,new york,possum
+16,2024-10-06 04:32:19.192866+00,phoenix,82.189,99.7808,some link,arizona,coyote
+17,2024-10-06 04:32:19.192866+00,chicago,35.5021,-130.8677,some link,illinois,hummingbird
+18,2024-10-06 04:32:19.192866+00,dallas,78.5487,-123.9646,some link,texas,owl
+19,2024-10-06 04:32:19.192866+00,dallas,-41.7646,-32.497,some link,texas,squirrel
+20,2024-10-06 04:32:19.192866+00,houston,-51.911,-124.6736,some link,texas,coyote
+21,2024-10-06 04:32:19.192866+00,dallas,-87.7435,177.3972,some link,texas,fox
+22,2024-10-06 04:32:19.192866+00,houston,40.6662,38.7127,some link,texas,deer
+23,2024-10-06 04:32:19.192866+00,san antonio,-84.4025,178.3338,some link,texas,owl
+24,2024-10-06 04:32:19.192866+00,new york,41.804,69.7894,some link,new york,coyote
+25,2024-10-06 04:32:19.192866+00,new york,62.8787,66.9226,some link,new york,deer
+26,2024-10-06 04:32:19.192866+00,san antonio,-54.7783,-176.7585,some link,texas,raccoon
+27,2024-10-06 04:32:19.192866+00,los angeles,-58.0245,49.4433,some link,california,fox
+28,2024-10-06 04:32:19.192866+00,phoenix,82.7368,-125.728,some link,arizona,coyote
+29,2024-10-06 04:32:19.192866+00,new york,70.31,-25.6961,some link,new york,squirrel
+30,2024-10-06 04:32:19.192866+00,chicago,33.7275,81.4096,some link,illinois,raccoon
+31,2024-10-06 04:32:19.192866+00,los angeles,38.2669,137.4694,some link,california,owl
+32,2024-10-06 04:32:19.192866+00,phoenix,-71.4355,141.4913,some link,arizona,squirrel
+33,2024-10-06 04:32:19.192866+00,los angeles,-80.1796,64.0002,some link,california,possum
+34,2024-10-06 04:32:19.192866+00,dallas,-37.5078,20.2071,some link,texas,owl
+35,2024-10-06 04:32:19.192866+00,philadelphia,-1.489,84.4185,some link,pennsylvania,possum
+36,2024-10-06 04:32:19.192866+00,new york,-55.2946,120.8981,some link,new york,fox
+37,2024-10-06 04:32:19.192866+00,new york,-17.1277,-114.6207,some link,new york,fox
+38,2024-10-06 04:32:19.192866+00,los angeles,73.6474,-76.9249,some link,california,woodpecker
+39,2024-10-06 04:32:19.192866+00,philadelphia,57.8673,61.1698,some link,pennsylvania,possum
+40,2024-10-06 04:32:19.192866+00,san antonio,38.6078,-110.9673,some link,texas,snake
+41,2024-10-06 04:32:19.192866+00,philadelphia,-43.4376,-18.8149,some link,pennsylvania,hummingbird
+42,2024-10-06 04:32:19.192866+00,phoenix,53.2312,-45.5137,some link,arizona,snake
+43,2024-10-06 04:32:19.192866+00,dallas,-5.7696,160.7903,some link,texas,snake
+44,2024-10-06 04:32:19.192866+00,chicago,33.5778,31.8517,some link,illinois,deer
+45,2024-10-06 04:32:19.192866+00,dallas,4.5097,137.6668,some link,texas,snake
+46,2024-10-06 04:32:19.192866+00,san antonio,-19.178,-125.9954,some link,texas,snake
+47,2024-10-06 04:32:19.192866+00,chicago,-38.6441,-71.1392,some link,illinois,hummingbird
+48,2024-10-06 04:32:19.192866+00,phoenix,-11.2978,14.6509,some link,arizona,fox
+49,2024-10-06 04:32:19.192866+00,los angeles,-35.7512,-163.6744,some link,california,coyote
+50,2024-10-06 04:32:19.192866+00,new york,-23.3727,-70.7334,some link,new york,snake
+51,2024-10-06 04:32:19.192866+00,san antonio,88.2885,-53.7992,some link,texas,owl
+52,2024-10-06 04:32:19.192866+00,philadelphia,-45.4638,63.3942,some link,pennsylvania,raccoon
+53,2024-10-06 04:32:19.192866+00,phoenix,8.8708,17.3669,some link,arizona,hummingbird
+54,2024-10-06 04:32:19.192866+00,chicago,47.5313,-25.1379,some link,illinois,woodpecker
+55,2024-10-06 04:32:19.193867+00,phoenix,63.7594,-77.1451,some link,arizona,possum
+56,2024-10-06 04:32:19.193867+00,philadelphia,58.6731,130.0828,some link,pennsylvania,possum
+57,2024-10-06 04:32:19.193867+00,los angeles,-71.9481,110.9732,some link,california,squirrel
+58,2024-10-06 04:32:19.193867+00,phoenix,18.6707,-36.8542,some link,arizona,deer
+59,2024-10-06 04:32:19.193867+00,philadelphia,39.1913,-173.3834,some link,pennsylvania,deer
+60,2024-10-06 04:32:19.193867+00,san antonio,48.1806,-56.22,some link,texas,snake
+61,2024-10-06 04:32:19.193867+00,phoenix,-78.9592,80.9024,some link,arizona,raccoon
+62,2024-10-06 04:32:19.193867+00,phoenix,81.3377,141.6211,some link,arizona,squirrel
+63,2024-10-06 04:32:19.193867+00,phoenix,-36.3197,-7.8715,some link,arizona,deer
+64,2024-10-06 04:32:19.193867+00,los angeles,-29.0025,143.4733,some link,california,coyote
+65,2024-10-06 04:32:19.193867+00,san antonio,58.0491,113.5478,some link,texas,possum
+66,2024-10-06 04:32:19.193867+00,philadelphia,2.2447,4.5407,some link,pennsylvania,squirrel
+67,2024-10-06 04:32:19.193867+00,dallas,21.3679,-112.0647,some link,texas,fox
+68,2024-10-06 04:32:19.193867+00,san antonio,-13.4368,101.583,some link,texas,fox
+69,2024-10-06 04:32:19.193867+00,san antonio,-10.6082,-68.0884,some link,texas,owl
+70,2024-10-06 04:32:19.193867+00,new york,-13.4099,98.1804,some link,new york,coyote
+71,2024-10-06 04:32:19.193867+00,philadelphia,29.2416,-130.9465,some link,pennsylvania,hummingbird
+72,2024-10-06 04:32:19.193867+00,san antonio,-53.1379,47.6538,some link,texas,fox
+73,2024-10-06 04:32:19.193867+00,dallas,44.2196,68.292,some link,texas,hummingbird
+74,2024-10-06 04:32:19.193867+00,san antonio,52.1745,18.2842,some link,texas,squirrel
+75,2024-10-06 04:32:19.193867+00,chicago,15.0214,35.5682,some link,illinois,woodpecker
+76,2024-10-06 04:32:19.193867+00,phoenix,-67.6351,160.8888,some link,arizona,owl
+77,2024-10-06 04:32:19.193867+00,houston,-50.8471,49.3497,some link,texas,possum
+78,2024-10-06 04:32:19.193867+00,chicago,2.1234,-76.9715,some link,illinois,snake
+79,2024-10-06 04:32:19.193867+00,new york,8.3521,139.0737,some link,new york,fox
+80,2024-10-06 04:32:19.193867+00,philadelphia,-75.0203,-135.1214,some link,pennsylvania,fox
+81,2024-10-06 04:32:19.193867+00,chicago,44.7418,140.7587,some link,illinois,owl
+82,2024-10-06 04:32:19.193867+00,houston,-9.4192,146.7574,some link,texas,possum
+83,2024-10-06 04:32:19.193867+00,houston,-58.3788,151.9398,some link,texas,owl
+84,2024-10-06 04:32:19.193867+00,dallas,57.2093,116.8374,some link,texas,hummingbird
+85,2024-10-06 04:32:19.193867+00,dallas,-87.946,-22.7455,some link,texas,raccoon
+86,2024-10-06 04:32:19.193867+00,los angeles,43.0416,-139.0563,some link,california,owl
+87,2024-10-06 04:32:19.193867+00,philadelphia,-71.1178,-35.0968,some link,pennsylvania,hummingbird
+88,2024-10-06 04:32:19.193867+00,phoenix,78.3831,32.3763,some link,arizona,hummingbird
+89,2024-10-06 04:32:19.193867+00,los angeles,78.8578,174.5057,some link,california,woodpecker
+90,2024-10-06 04:32:19.193867+00,dallas,86.7848,50.642,some link,texas,woodpecker
+91,2024-10-06 04:32:19.193867+00,dallas,-47.7167,123.8034,some link,texas,squirrel
+92,2024-10-06 04:32:19.193867+00,dallas,-37.0865,-82.9932,some link,texas,coyote
+93,2024-10-06 04:32:19.193867+00,chicago,-12.392,63.9219,some link,illinois,woodpecker
+94,2024-10-06 04:32:19.193867+00,phoenix,54.2228,-156.5947,some link,arizona,fox
+95,2024-10-06 04:32:19.193867+00,philadelphia,-33.8952,-134.2773,some link,pennsylvania,possum
+96,2024-10-06 04:32:19.193867+00,dallas,-35.8351,132.5808,some link,texas,squirrel
+97,2024-10-06 04:32:19.193867+00,new york,-70.3115,35.5911,some link,new york,possum
+98,2024-10-06 04:32:19.193867+00,houston,-29.096,25.1828,some link,texas,coyote
+99,2024-10-06 04:32:19.193867+00,los angeles,60.1965,177.6548,some link,california,hummingbird
+100,2024-10-06 04:32:19.193867+00,houston,-36.5765,45.2817,some link,texas,raccoon
