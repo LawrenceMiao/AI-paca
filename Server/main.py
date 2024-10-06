@@ -128,7 +128,7 @@ async def add_animal(
 
     # Get the class name
     # predicted_class = CLASS_NAMES[predicted_idx]
-    predicted_class = predicted_idx
+    predicted_class = str(predicted_idx)
 
     # ASSIGN json_to_submit
     json_to_submit["animal_name"] = predicted_class
@@ -154,6 +154,8 @@ async def add_animal(
 
     # Insert the data into the Supabase table
     response = supabase.table("animals").insert(json_to_submit).execute()
+
+    logger.info("end")
 
     return {"message": "Animal added successfully", "data": response.data}
 
