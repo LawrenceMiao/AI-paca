@@ -12,6 +12,12 @@ from fastapi.responses import JSONResponse
 from PIL import Image
 from torchvision import models, transforms
 from pydantic import BaseModel
+import logging
+
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 
 class Animal(BaseModel):
@@ -107,12 +113,8 @@ async def add_animal(animal: Animal):
 
     sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
 
-    for animal in sorted_animals:
-        print(animal["id"])
     # Return the ID of the last animal
     last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
-
-    id = last_animal_id + 1
 
     json_to_submit[id] = last_animal_id + 1
 
