@@ -20,10 +20,12 @@ templates = Jinja2Templates(directory="templates")
 # Serve static files (optional, if you want to add CSS/JS)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Root route - homepage
-@app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "title": "My FastAPI Website"})
+
+@app.get("/")
+async def read_root():
+    """Test server running"""
+    return {"message": "FastAPI application"}
+
 
 # return specific animals
 @app.get("/all_data/{animal}")
@@ -46,7 +48,8 @@ async def get_animal(animal: str, request: Request):
 
 # return specific locations
 
-# (potential) return coordinates
+# (potential) return specific coordinates
+
 
 # base API endpoint to get all the animals in the table
 @app.get("/all_data")
@@ -57,4 +60,3 @@ async def get_data():
         return {"message" : "No Animals exist in the database."}
     
     return animals.data
-
