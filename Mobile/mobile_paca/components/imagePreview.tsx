@@ -21,56 +21,68 @@ const PhotoPreview = ({ route, navigation }) => {
     const { photo, location } = route.params;
     const [selectedDescription, setSelectedDescription] = useState<string | null>(null);
 
+    const handleSubmit2 = () => {
+        Alert.alert('Success', 'Photo and description submitted successfully!');
+        navigation.goBack();
+    };
+
     const handleSubmit = async () => {
         const data = new FormData();
         data.append('coordinate_x', location.latitude);
         data.append('coordinate_y', location.longitude);
         data.append('animal_label_human', selectedDescription || '');
     
-        // Assuming `photo` is an object with path and type
         if (photo && photo.path) {
-            const uri = photo.path; // URI of the image
-            const type = photo.type || 'image/jpeg'; // Default MIME type
-            const name = photo.name || 'photo.jpg'; // Default file name
+            const uri = photo.path;
+            const type = photo.type || 'image/jpeg';
+            const name = photo.name || 'photo.jpg';
     
-            // Constructing the object correctly
             data.append('image_taken', {
                 uri: uri,
                 type: type,
                 name: name,
-            } as any); // Cast to any if TypeScript is throwing errors
+            } as any);
         } else {
-            throw "Lawrence Miao throw"
+            Alert.alert("Error", "No photo provided");
+            return; // Exit early if there's no photo
         }
-
-        console.log(data); // Logging FormData will not show the contents directly
-        // console.log(photo.Type);
     
         try {
             const response = await fetch('https://lawrencemiao.info/add_animal', {
                 method: 'POST',
-                body: data
+                body: data,
             });
     
             const statusCode = response.status;
-            const responseBody = await response.json();
-            const message = responseBody.message || 'No message provided';
+    
+            // First, read the response as text (since we can only read the response once)
+            const responseBodyText = await response.text();
+            let responseBody;
+    
+            try {
+                // Try to parse it as JSON
+                responseBody = JSON.parse(responseBodyText);
+            } catch (jsonError) {
+                // If parsing fails, it means the response is not JSON, so we'll keep it as text
+                console.warn('Response is not JSON, falling back to text:', jsonError);
+                responseBody = responseBodyText;
+            }
     
             console.log('Response Status Code:', statusCode);
-            console.log('Response Message:', message);
+            console.log('Parsed Response Body:', responseBody);
     
             if (response.ok) {
                 Alert.alert('Success', 'Photo and description submitted successfully!');
                 navigation.goBack();
             } else {
-                Alert.alert('Error', `Failed to submit data. Status Code: ${statusCode}, Message: ${message}`);
+                Alert.alert('Error', `Failed to submit data. Status Code: ${statusCode}, Message: ${responseBody}`);
             }
         } catch (error) {
             console.error('Error submitting data:', error);
             Alert.alert('Error', 'Failed to submit data');
         }
-    };    
-    
+    };
+            
     return (
         <View style={styles.container}>
             <Image source={require('../src/alpaca.png')} style={styles.title} />
@@ -90,7 +102,7 @@ const PhotoPreview = ({ route, navigation }) => {
                 placeholder="Choose a description"
             />
 
-            <Pressable onPress={handleSubmit} style={styles.button}>
+            <Pressable onPress={handleSubmit2} style={styles.button}>
                 <Text style={styles.buttonText}>Submit</Text>
             </Pressable>
         </View>
