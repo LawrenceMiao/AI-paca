@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Alert, Image } from 'react-native';
 import { useCameraPermission, useCameraDevice, Camera, PhotoFile } from 'react-native-vision-camera';
 import Geolocation from 'react-native-geolocation-service';
+import ImageResizer from 'react-native-image-resizer';
 
 const CameraView = ({ navigation }) => {
     const device = useCameraDevice('back');
@@ -39,15 +40,22 @@ const CameraView = ({ navigation }) => {
         try {
             const photoTaken = await camera.current?.takePhoto();
             if (photoTaken) {
+                const compressedPhoto = await ImageResizer.createResizedImage(
+                    photoTaken.path, // original image path
+                    800, 
+                    600,
+                    'JPEG',
+                    50
+                );
                 // Get the current location
                 Geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        setPhoto({ file: photoTaken, location: { latitude, longitude } });
+                        // setPhoto({ file: compressedPhoto, location: { latitude, longitude } });
                         // Alert.alert('Picture taken', `Photo captured successfully at (${latitude}, ${longitude})!`);
 
                         navigation.navigate('PhotoPreview', {
-                            photo: photoTaken,
+                            photo: compressedPhoto,
                             location: { latitude, longitude },
                         });
                     },
