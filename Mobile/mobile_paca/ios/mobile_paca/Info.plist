@@ -51,6 +51,8 @@
 
 	<key>NSCameraUsageDescription</key>
 	<string>using camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>using photos.</string>
 	
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>We need access to your location to capture the location of the photo.</string>

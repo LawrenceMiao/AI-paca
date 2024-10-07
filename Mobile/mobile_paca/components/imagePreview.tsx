@@ -44,7 +44,7 @@ const PhotoPreview = ({ route, navigation }) => {
             } as any);
         } else {
             Alert.alert("Error", "No photo provided");
-            return; // Exit early if there's no photo
+            return;
         }
     
         try {
@@ -55,15 +55,12 @@ const PhotoPreview = ({ route, navigation }) => {
     
             const statusCode = response.status;
     
-            // First, read the response as text (since we can only read the response once)
             const responseBodyText = await response.text();
             let responseBody;
     
             try {
-                // Try to parse it as JSON
                 responseBody = JSON.parse(responseBodyText);
             } catch (jsonError) {
-                // If parsing fails, it means the response is not JSON, so we'll keep it as text
                 console.warn('Response is not JSON, falling back to text:', jsonError);
                 responseBody = responseBodyText;
             }
@@ -102,7 +99,7 @@ const PhotoPreview = ({ route, navigation }) => {
                 placeholder="Choose a description"
             />
 
-            <Pressable onPress={handleSubmit2} style={styles.button}>
+            <Pressable onPress={handleSubmit} style={styles.button}>
                 <Text style={styles.buttonText}>Submit</Text>
             </Pressable>
         </View>
