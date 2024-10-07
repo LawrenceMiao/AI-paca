@@ -7,23 +7,25 @@ import io
 import httpx
 from datetime import datetime
 import torch
-from fastapi import FastAPI, File, UploadFile, Request, HTTPException
+from fastapi import FastAPI, File, UploadFile, Request, HTTPException, Form
 from fastapi.responses import JSONResponse
 from PIL import Image
 from torchvision import models, transforms
 from pydantic import BaseModel
+import logging
 
-class Animal(BaseModel):
-    coordinate_x: float
-    coordinate_y: float
-    image_taken: str
-    animal_label_human: str
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
 url = config("SUPERBASE_URL")
 key = config("SUPERBASE_KEY")
 geo_key = config("GEO_KEY")
+
+IMAGE_BUCKET = "images"
 
 supabase: Client = create_client(url, key)
 
@@ -39,6 +41,7 @@ async def read_root():
     """Test server running"""
     return {"message": "FastAPI application"}
 
+
 # base API endpoint to get all the animals in the table
 @app.get("/all_data")
 async def get_data():
@@ -49,13 +52,14 @@ async def get_data():
 
     return animals.data
 
+
 # return specific animals
-@app.get("/all_data/animal={animal}")
+@app.get("/all_data/{animal}")
 async def get_animal(animal: str, request: Request):
     # Check if the animal name is not lowercase
     if animal != animal.lower():
         # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/animal={animal.lower()}")
+        new_url = request.url.replace(path=f"/all_data/{animal.lower()}")
         return RedirectResponse(url=new_url)
 
     # Query the Supabase table for the specified animal
@@ -70,62 +74,6 @@ async def get_animal(animal: str, request: Request):
 
 
 # return specific locations
-@app.get("/all_data/city={city}&state={state}")
-async def get_animal(city: str, state: str, request: Request):
-    # Check if the city or state name is not lowercase
-    if city != city.lower() or state != state.lower():
-        # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/city={city.lower()}&state={state.lower()}")
-        return RedirectResponse(url=new_url)
-
-    # Query the Supabase table for the specified city and state
-    response = supabase.table("animals").select("*").eq("city", city).eq("state", state).execute()
-
-    # If the animal does not exist in the database
-    if not response.data:
-        return {"message": "No animals exist in the database for selected city and state."}
-
-    # Return the matched data
-    return {"data": response.data}
-
-
-@app.get("/all_data/city={city}")
-async def get_animal(city: str, request: Request):
-    # Check if the city or state name is not lowercase
-    if city != city.lower():
-        # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/city={city.lower()}")
-        return RedirectResponse(url=new_url)
-
-    # Query the Supabase table for the specified city and state
-    response = supabase.table("animals").select("*").eq("city", city).execute()
-
-    # If the animal does not exist in the database
-    if not response.data:
-        return {"message": "No animals exist in the database for selected city."}
-
-    # Return the matched data
-    return {"data": response.data}
-
-
-@app.get("/all_data/state={state}")
-async def get_animal(state: str, request: Request):
-    # Check if the city or state name is not lowercase
-    if state != state.lower():
-        # Redirect to the lowercase version of the URL
-        new_url = request.url.replace(path=f"/all_data/state={state.lower()}")
-        return RedirectResponse(url=new_url)
-
-    # Query the Supabase table for the specified city and state
-    response = supabase.table("animals").select("*").eq("state", state).execute()
-
-    # If the animal does not exist in the database
-    if not response.data:
-        return {"message": "No animals exist in the database for selected state."}
-
-    # Return the matched data
-    return {"data": response.data}
-
 
 # (potential) return specific coordinates .
 
@@ -144,64 +92,62 @@ async def get_animal(state: str, request: Request):
 
 # POST endpoint to add a new animal
 @app.post("/add_animal")
-async def add_animal(animal: Animal):
+async def add_animal(
+    coordinate_x: float = Form(...),
+    coordinate_y: float = Form(...),
+    animal_label_human: str = Form(...),
+    image_taken: UploadFile = File(...),
+):
+    logger.debug("breegin")
     json_to_submit = {}
-    # Access the body data directly from the animal parameter
-    animal_data = animal.dict()  # Convert Pydantic model to dict
 
-    # get id
-    animals = supabase.table("animals").select("*").execute()
+    # Upload the image to Supabase Storage
+    image_data = await image_taken.read()  # Read the uploaded image
+    image_path = f"images/{image_taken.filename}"  # Define the path for the image
 
-    # Check if the data is empty
-    if not animals.data:
-        return {"message": "No Animals exist in the database."}
+    # Upload the image to Supabase Storage
+    response = supabase.storage.from_(IMAGE_BUCKET).upload(image_path, image_data)
 
-    sorted_animals = sorted(animals.data, key=lambda animal: animal["id"])
+    # Check if upload was successful
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Image upload failed.")
 
-    for animal in sorted_animals:
-        print(animal["id"])
-    # Return the ID of the last animal
-    last_animal_id = sorted_animals[len(sorted_animals) - 1]["id"]  # Ensure 'id' exists
-
-    id = (last_animal_id + 1)
-
-    json_to_submit[id] = (last_animal_id + 1)
+    # Get public URL for the uploaded image
+    image_url = supabase.storage.from_(IMAGE_BUCKET).get_public_url(image_path)
 
     # get timestamp of upload
     created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f") + "+00"
     json_to_submit["created_at"] = created_at
 
-    
-    # get predicted AI
-    async with httpx.AsyncClient() as client:
-        with open(animal_data['image_link'], 'rb') as image_file:
-            files = {'file': image_file}
-            response = await client.post("/predict", files=files)
+    image_bytes = await image_taken.read()
+    input_tensor = preprocess_image(image_bytes)
 
-            if response.status_code == 200:
-                response = response.json()
-                prediction = response["prediction"].lower()
-                if prediction != (animal_data['animal_label_human'].lower()):
-                    json_to_submit['animal_name'] = (animal_data['animal_label_human'].lower())
-                else:
-                    json_to_submit['animal_name'] = prediction.lower()
-            else:
-                return {"error": response.text}
+    # Run the model and get prediction
+    with torch.no_grad():
+        output = model(input_tensor)
+        predicted_idx = output.argmax(dim=1).item()
 
-    # fill the rest of the data from the animal_data
-    for i in range(len(animal_data.keys()) - 1):
-        cur_key = animal_data.keys()[i]
-        json_to_submit[cur_key] = animal_data[cur_key]
+    # Get the class name
+    # predicted_class = CLASS_NAMES[predicted_idx]
+    predicted_class = str(predicted_idx)
+
+    # ASSIGN json_to_submit
+    json_to_submit["animal_name"] = predicted_class
+    json_to_submit["coordinate_x"] = coordinate_x
+    json_to_submit["coordinate_y"] = coordinate_y
+    json_to_submit["image_taken"] = image_url
 
     # get city and state
-    geo_url = f"http://localhost:8000/geocode/?lat={animal_data['coordinate_x']}&lon={animal_data['coordinate_y']}"
+    geo_url = f"http://localhost:8000/geocode/?lat={coordinate_x}&lon={coordinate_y}"
 
     async with httpx.AsyncClient() as client:
         geocode_response = await client.get(geo_url)
-        
+
         # Handle geocode response
         if geocode_response.status_code != 200:
-            raise HTTPException(status_code=geocode_response.status_code, detail="Geocode failed")
+            raise HTTPException(
+                status_code=geocode_response.status_code, detail="Geocode failed"
+            )
 
         geocode_data = geocode_response.json()
         json_to_submit["city"] = geocode_data["city"]
@@ -210,11 +156,10 @@ async def add_animal(animal: Animal):
     # Insert the data into the Supabase table
     response = supabase.table("animals").insert(json_to_submit).execute()
 
-    # Check for errors
-    if response.error:
-        raise HTTPException(status_code=400, detail=response.error.message)
+    logger.debug("end")
 
     return {"message": "Animal added successfully", "data": response.data}
+
 
 # # POST endpoint to add a new animal
 # @app.get("/test_geo")
@@ -239,7 +184,9 @@ async def add_animal(animal: Animal):
 @app.get("/geocode/")
 async def reverse_geocode(lat: float, lon: float):
     # Define the OpenCage API URL
-    api_url = f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={geo_key}"
+    api_url = (
+        f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={geo_key}"
+    )
 
     # Make the HTTP request
     async with httpx.AsyncClient() as client:
@@ -248,13 +195,13 @@ async def reverse_geocode(lat: float, lon: float):
     # Parse the JSON response
     data = response.json()
 
-    if data['total_results'] == 0:
+    if data["total_results"] == 0:
         raise HTTPException(status_code=404, detail="Location not found")
 
     # Extract city, state, and country from the API response
-    components = data['results'][0]['components']
-    city = components.get('city') or components.get('town') or components.get('village')
-    state = components.get('state')
+    components = data["results"][0]["components"]
+    city = components.get("city") or components.get("town") or components.get("village")
+    state = components.get("state")
     # country = components.get('country')
 
     if not city or not state:
@@ -265,6 +212,7 @@ async def reverse_geocode(lat: float, lon: float):
         "state": state.lower(),
         # "country": country
     }
+
 
 MODEL_DESTINATION = "resnet18_pretrained.pth"
 
