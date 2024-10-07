@@ -1,14 +1,16 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-
 function Filters({
   animals,
   cities,
+  states,
   selectedAnimal,
   selectedCity,
+  selectedState,
   onAnimalChange,
   onCityChange,
+  onStateChange,
   startDate,
   endDate,
   onStartDateChange,
@@ -44,7 +46,21 @@ function Filters({
           ))}
         </select>
       </div>
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
+        <label className="font-bold mb-1">State:</label>
+        <select
+          value={selectedState}
+          onChange={e => onStateChange(e.target.value)}
+          className="border rounded px-2 py-1"
+        >
+          {states.map(state => (
+            <option key={state} value={state}>
+              {state}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="flex flex-col">
         <label className="font-bold mb-1">Start Date:</label>
         <DatePicker
           portalId="root"
@@ -54,8 +70,7 @@ function Filters({
           startDate={startDate}
           endDate={endDate}
           isClearable
-          viewBox="0 0 48 48"
-          className="border rounded px-2 py-1 z-10"
+          className="border rounded px-2 py-1"
         />
       </div>
       <div className="flex flex-col">
